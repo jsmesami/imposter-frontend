@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "frontend-dependencies": "^0.2.1",
+    "gridlex": "^2.4.0",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "normalize.css": "^7.0.0",
+    "svgxuse": "^1.2.4"
+  },
+  "frontendDependencies": {
+    "target": "resources/public/components",
+    "packages": [
+      "gridlex",
+      "normalize.css",
+      "svgxuse"
+    ]
+  },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/frontend-dependencies"
+  }
+}
