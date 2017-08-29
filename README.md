@@ -1,39 +1,51 @@
-# imposter
+# Imposter Frontend
 
-FIXME: Write a one-line description of your library/project.
+The frontend part of automated poster generation system for 
+Prague Municipal Library.
 
 ## Overview
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+A standalone repository for single-page JS application consuming 
+[backend](FIXME:url) API. The app is written in 
+[ClojureScript](https://clojurescript.org/) for better maintainability.
 
-## Setup
+## Development
 
-To get an interactive development environment run:
+### Prequisities
 
-    lein figwheel
+* Node.js, Yarn, Gulp 
+* Java 1.8+, [Leiningen](https://leiningen.org/) 2.7+
+
+### Diving In
+
+To get an interactive development environment for ClojureScript run:
+
+    lein dev
 
 and open your browser at [localhost:3449](http://localhost:3449/).
 This will auto compile and send all changes to the browser without the
-need to reload. After the compilation process is complete, you will
-get a Browser Connected REPL. An easy way to try it is:
+need to reload. 
 
-    (js/alert "Am I connected?")
+To start working on Sass files run:
 
-and you should see an alert in the browser window.
+    gulp dev
 
-To clean all compiled files:
+This will watch Sass sources for changes and feed compiled stylesheets, 
+including sourcemaps, into the browser.
 
-    lein clean
+## Build
 
 To create a production build run:
 
-    lein do clean, cljsbuild once min
+    make
 
-And open your browser in `resources/public/index.html`. You will not
-get live reloading, nor a REPL. 
+To clean all installed and compiled files:
+
+    make clean
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2017 Ondřej Nejedlý
 
-Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
+Distributed under the Eclipse Public License either version 1.0 or 
+(at your option) any later version.
