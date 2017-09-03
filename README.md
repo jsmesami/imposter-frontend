@@ -1,7 +1,7 @@
 # Imposter Frontend
 
 The frontend part of automated poster generation system for 
-Prague Municipal Library.
+Municipal Library of Prague.
 
 ## Overview
 
