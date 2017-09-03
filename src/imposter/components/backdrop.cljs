@@ -12,10 +12,10 @@
      "backdrop"
 
      :component-will-mount
-     #(classes/add (-> js/window .-document .-body) "backdrop")
+     #(classes/add (-> js/window .-document .-body) "with-backdrop")
 
      :component-will-unmount
-     #(classes/remove (-> js/window .-document .-body) "backdrop")
+     #(classes/remove (-> js/window .-document .-body) "with-backdrop")
 
      :reagent-render
      (fn render-backdrop [& content]

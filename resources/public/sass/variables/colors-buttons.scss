@@ -1,0 +1,33 @@
+@import "colors";
+
+
+$button-colors: (
+  'primary': (
+    'bg': $brand-color--support2,
+    'bg--focus': darken($brand-color--support2, 10%),
+    'bg--hover': darken($brand-color--support2, 10%),
+    'bg--active': darken($brand-color--support2, 20%),
+    'text': $text-color--base,
+    'text--focus': $text-color--base,
+    'text--hover': $text-color--base,
+    'text--active': $text-color--base,
+    'border': $brand-color--support2,
+    'border--focus': darken($brand-color--support2, 10%),
+    'border--hover': darken($brand-color--support2, 10%),
+    'border--active': darken($brand-color--support2, 20%),
+  ),
+  'hushed': (
+    'bg': $bg-color,
+    'bg--focus': #ebebeb,
+    'bg--hover': #ebebeb,
+    'bg--active': #dcdcdc,
+    'text': $text-color--base,
+    'text--focus': $text-color--base,
+    'text--hover': $text-color--base,
+    'text--active': $text-color--base,
+    'border': $border-color--input,
+    'border--focus': $border-color--input,
+    'border--hover': $border-color--input,
+    'border--active': $border-color--input,
+  ),
+);

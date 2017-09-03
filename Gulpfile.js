@@ -6,7 +6,7 @@ let gulp = require('gulp'),
 
 
 let sassDir = 'resources/public/sass',
-    sassSources = [`${sassDir}/imposter.sass`, `${sassDir}/modules/*.sass'`],
+    sassSources = [`${sassDir}/imposter.sass`, `${sassDir}/modules/*.sass`],
     sassDestDir = 'resources/public/css';
 
 

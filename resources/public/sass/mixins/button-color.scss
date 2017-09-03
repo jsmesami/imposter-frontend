@@ -1,0 +1,38 @@
+@import "../variables/colors-buttons";
+
+
+@mixin button-color($name) {
+  $colors: map-get($button-colors, $name);
+  $bg: map-get($colors, 'bg');
+  $bg--focus: map-get($colors, 'bg--focus');
+  $bg--hover: map-get($colors, 'bg--hover');
+  $bg--active: map-get($colors, 'bg--active');
+  $text: map-get($colors, 'text');
+  $text--focus: map-get($colors, 'text--focus');
+  $text--hover: map-get($colors, 'text--hover');
+  $text--active: map-get($colors, 'text--active');
+  $border: map-get($colors, 'border');
+  $border--focus: map-get($colors, 'border--focus');
+  $border--hover: map-get($colors, 'border--hover');
+  $border--active: map-get($colors, 'border--active');
+
+  background-color: $bg;
+  color: $text;
+  border-color: $border;
+
+  &:focus {
+    background-color: $bg--focus;
+    color: $text--focus;
+    border-color: $border--focus;
+  }
+  &:hover {
+    background-color: $bg--hover;
+    color: $text--hover;
+    border-color: $border--hover;
+  }
+  &:active {
+    background-color: $bg--active;
+    color: $text--active;
+    border-color: $border--active;
+  }
+}

@@ -1,0 +1,39 @@
+@import "../mixins/button-color"
+@import "../variables/dimensions"
+@import "../variables/fonts"
+@import "../variables/transitions"
+
+
+.button
+  display: inline-block
+  border-radius: $border-radius--base
+  text-transform: uppercase
+  padding: $input-padding--v $input-padding--h
+  cursor: pointer
+  transition: all $transition-base
+  border: 1px solid transparent
+  outline: none
+  text-align: center
+  letter-spacing: 0.03em
+  font-family: $font-family--base
+  font-size: $font-size--base
+
+  @include button-color('primary')
+
+  &--hushed
+    @include button-color('hushed')
+
+  &.busy,
+  &.disabled
+    cursor: not-allowed
+    pointer-events: none
+    opacity: .5
+    filter: grayscale(100%)
+
+  &.busy
+    cursor: progress
+
+  .icon
+    width: 1em
+    height: 1em
+    margin: 0 0 -2px .8em

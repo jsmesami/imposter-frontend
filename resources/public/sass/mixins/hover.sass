@@ -1,0 +1,9 @@
+@mixin hover
+  &:hover
+    @content
+
+
+@mixin hover-focus
+  &:focus,
+  &:hover
+    @content

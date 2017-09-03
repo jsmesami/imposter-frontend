@@ -14,7 +14,7 @@
 (defn icon
   [id & [modifiers]]
   [:span
-   {:class (bem/bm :icon (into [id] modifiers))}
+   {:class (bem/bm "icon" (into [id] modifiers))}
    [svg id]])
 
 
@@ -24,8 +24,10 @@
                  busy? false
                  attrs {}
                  modifiers []}}]
-  (let [states [(when-not enabled? :disabled) (when busy? :busy)]
-        default-attrs {:class (bem/bm "button" (into states modifiers))
+  (let [states [(when-not enabled? "disabled") (when busy? "busy")]
+        default-attrs {:class (->> (bem/bm "button" modifiers)
+                                   (into states)
+                                   (join " "))
                        :on-click #(when (and (not busy?) enabled? on-click)
                                     (on-click %))}]
     [:button
@@ -42,9 +44,12 @@
       :or {enabled? true
            attrs {}
            modifiers []}}]
-  (let [default-attrs {:default-value value
-                       :class (bem :form-group :input modifiers)
-                       :on-change #(when (and on-change enabled?)
+  (let [states [(when-not enabled? "disabled")]
+        default-attrs {:default-value value
+                       :class (->> (bem "form-group" "input" modifiers)
+                                   (into states)
+                                   (join " "))
+                       :on-change #(when (and enabled? on-change)
                                      (on-change (-> % .-target .-value)))
                        :type :text}]
     [:div
