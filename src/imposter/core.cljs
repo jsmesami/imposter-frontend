@@ -1,16 +1,19 @@
 (ns imposter.core
   (:require
-    [reagent.core :as reagent :refer [atom]]))
+    [reagent.core :as reagent]
+    [re-frame.core :as reframe]
+    [imposter.generator.core]
+    [imposter.index.core]
+    [imposter.views :refer [layout]]))
 
 
-(defonce db (atom {:name "Imposter"}))
+(defn app
+  []
+  layout)
 
 
-(defn app []
-  [:div
-   [:h1 (:name @db)]])
-
-
-(reagent/render-component
-  [app]
-  (js/document.getElementById "app"))
+(defn ^:export main
+  []
+  (reframe/dispatch-sync [:common/initialize])
+  (reagent/render [app]
+    (js/document.getElementById "app")))

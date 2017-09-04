@@ -14,7 +14,7 @@ A standalone repository for single-page JS application consuming
 ### Prequisities
 
 * Node.js, Yarn, Gulp 
-* Java 1.8+, [Leiningen](https://leiningen.org/) 2.7+
+* Java 8, [Leiningen](https://leiningen.org/) 2.7+
 
 ### Diving In
 

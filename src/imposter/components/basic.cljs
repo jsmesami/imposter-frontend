@@ -12,7 +12,7 @@
 
 
 (defn icon
-  [id & [modifiers]]
+  [id & modifiers]
   [:span
    {:class (bem/bm "icon" (into [id] modifiers))}
    [svg id]])
@@ -35,22 +35,22 @@
      label
 
      (if busy?
-       [icon "spinner" ["spinning"]]
+       [icon "spinner" "spinning"]
        (when icon-name [icon icon-name]))]))
 
 
 (defn input
-  [& {:keys [enabled? value on-change attrs modifiers]
+  [& {:keys [enabled? value on-change on-key-press attrs modifiers]
       :or {enabled? true
            attrs {}
            modifiers []}}]
-  (let [states [(when-not enabled? "disabled")]
-        default-attrs {:default-value value
-                       :class (->> (bem "form-group" "input" modifiers)
-                                   (into states)
-                                   (join " "))
+  (let [default-attrs {:default-value value
+                       :class (->> (bem "form-group" "input" modifiers))
                        :on-change #(when (and enabled? on-change)
                                      (on-change (-> % .-target .-value)))
+                       :on-key-press #(when (and enabled? on-key-press)
+                                        (on-key-press %))
+                       :disabled (when-not enabled? "disabled")
                        :type :text}]
     [:div
      [:input (merge default-attrs attrs)]]))

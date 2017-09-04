@@ -10,7 +10,9 @@
                  [org.clojure/clojurescript "1.9.908"]
                  [org.clojure/core.async  "0.3.443"]
                  [binaryage/devtools "0.9.4"]
-                 [reagent "0.7.0"]]
+                 [reagent "0.7.0"]
+                 [re-frame "0.10.1"]
+                 [re-frisk "0.5.0"]]
 
   :plugins [[lein-figwheel "0.5.13"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
@@ -39,7 +41,7 @@
                            :source-map-timestamp true
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
-                           :preloads [devtools.preload imposter.dev]}}
+                           :preloads [devtools.preload re-frisk.preload imposter.preload]}}
 
                {:id "min"
                 :source-paths ["src"]

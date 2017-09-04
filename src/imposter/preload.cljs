@@ -1,3 +1,3 @@
-(ns imposter.dev)
+(ns imposter.preload)
 
 (enable-console-print!)
