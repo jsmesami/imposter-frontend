@@ -10,8 +10,10 @@
                  [org.clojure/clojurescript "1.9.908"]
                  [org.clojure/core.async  "0.3.443"]
                  [binaryage/devtools "0.9.4"]
+                 [cljs-ajax "0.7.2"]
                  [reagent "0.7.0"]
                  [re-frame "0.10.1"]
+                 [day8.re-frame/http-fx "0.1.4"]
                  [re-frisk "0.5.0"]]
 
   :plugins [[lein-figwheel "0.5.13"]
