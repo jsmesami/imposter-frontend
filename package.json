@@ -1,4 +1,9 @@
 {
+  "license" : "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsmesami/imposter-frontend.git"
+  },
   "dependencies": {
     "frontend-dependencies": "^0.2.1",
     "gridlex": "^2.4.0",
