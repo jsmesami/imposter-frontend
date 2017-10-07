@@ -1,10 +1,13 @@
 (ns imposter.views
   (:require
-    [re-frame.core :refer [subscribe]]))
+    [re-frame.core :refer [subscribe]]
+    [imposter.flash.views :refer [flash-messages-component]]))
 
 
 (defn layout
   []
-  (if @(subscribe [:common/initialized?])
-    [:h2 "Imposter"]
-    [:h2 "Loading data"]))
+  [:div
+   [flash-messages-component]
+   (if @(subscribe [:app/loading?])
+     [:h2 "Imposter"]
+     [:h2 "Loading data"])])
