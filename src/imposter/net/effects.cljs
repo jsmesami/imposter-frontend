@@ -4,6 +4,6 @@
 
 
 (reg-fx
-  :net/log-error
+  :net/log
   (fn [message]
     (js/console.log message)))

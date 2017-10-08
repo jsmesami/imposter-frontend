@@ -9,5 +9,5 @@
   [:div
    [flash-messages-component]
    (if @(subscribe [:app/loading?])
-     [:h2 "Imposter"]
-     [:h2 "Loading data"])])
+     [:h2 "Loading data"]
+     [:h2 "Imposter"])])

@@ -21,5 +21,5 @@
   :net/bad-response
   [trim-v]
   (fn [_ [response]]
-    {:net/log-error (str "Error: " (:debug-message response))
+    {:net/log (str "Error: " (:debug-message response))
      :dispatch [:flash/add-message [:error "Spojení se nezdařilo."]]}))

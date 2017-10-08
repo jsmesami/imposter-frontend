@@ -6,4 +6,4 @@
 (reg-sub
   :app/loading?
   (fn [db _]
-    (not (empty? (:api db)))))
+    (empty? (:api db))))

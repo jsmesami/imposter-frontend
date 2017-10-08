@@ -14,7 +14,13 @@
                  [reagent "0.7.0"]
                  [re-frame "0.10.1"]
                  [day8.re-frame/http-fx "0.1.4"]
-                 [re-frisk "0.5.0"]]
+                 [re-frisk "0.5.0"]
+                 ;; Development webserver:
+                 [clj-http "3.7.0"]
+                 [compojure "1.6.0"]
+                 [ring "1.6.2"]
+                 [ring/ring-defaults "0.3.1"]
+                 [tailrecursion/ring-proxy "2.0.0-SNAPSHOT"]]
 
   :plugins [[lein-figwheel "0.5.13"]
             [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
@@ -23,8 +29,12 @@
 
   :clean-targets ^{:protect false} ["resources/public/js" "target"]
 
-  :figwheel {:css-dirs ["resources/public/css"] ;; watch and update CSS
-             :repl false}
+  :figwheel {:http-server-root "public"
+             :repl false
+             ;:nrepl-port 7892
+             :server-port 3449
+             :css-dirs ["resources/public/css"] ;; watch and update CSS
+             :ring-handler dev-app/app}
 
   :cljsbuild {:builds
               [{:id "dev"

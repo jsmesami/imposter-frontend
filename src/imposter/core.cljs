@@ -14,8 +14,19 @@
   layout)
 
 
+(defn render-app
+  []
+  (reagent/render
+    [app]
+    (js/document.getElementById "app")))
+
+
 (defn ^:export main
   []
   (reframe/dispatch-sync [:net/load-api-urls])
-  (reagent/render [app]
-    (js/document.getElementById "app")))
+  (render-app))
+
+
+(defn on-js-reload
+  []
+  (render-app))
