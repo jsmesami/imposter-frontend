@@ -6,7 +6,7 @@
     [imposter.flash.core]
     [imposter.generator.core]
     [imposter.net.core]
-    [imposter.views :refer [layout]]))
+    [imposter.app.views :refer [layout]]))
 
 
 (defn app

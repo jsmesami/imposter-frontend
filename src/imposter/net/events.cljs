@@ -9,7 +9,7 @@
   :net/load-api-urls
   (fn [{:keys [db]} _]
     {:http-xhrio {:method          :get
-                  :uri             "/api/"
+                  :uri             "/api/v1/"
                   :timeout         8000
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})

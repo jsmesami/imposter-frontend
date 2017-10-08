@@ -1,6 +1,5 @@
 (ns imposter.components.navbar
   (:require
-    [imposter.components.basic :refer [icon]]
     [imposter.utils.bem :as bem]))
 
 

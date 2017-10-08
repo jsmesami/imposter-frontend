@@ -7,7 +7,7 @@
 (def module-name "flash")
 
 
-(defn flash-message
+(defn- flash-message
   [id severity text]
   [:div {:class (bem module-name "message" [severity])}
    [:div {:class (bem/bm module-name "text")}
@@ -17,7 +17,7 @@
     "\u00D7"]])
 
 
-(defn flash-messages-component
+(defn flash-messages
   []
   (when-let [messages @(subscribe [:flash/messages])]
     [:div {:class module-name}
