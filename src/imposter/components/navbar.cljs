@@ -11,5 +11,5 @@
   [:div {:class module-name}
    (into [:div {:class (bem/be module-name "children")} children])
    [:div {:class (bem/be module-name "logo")}
-    [:img {:src "/assets/images/logo_MLP"
+    [:img {:src "/assets/images/logo_MLP.svg"
            :alt "Městská knihovna v Praze"}]]])
