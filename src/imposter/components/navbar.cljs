@@ -9,7 +9,7 @@
 (defn navbar
   [& children]
   [:div {:class module-name}
-   (into [:div {:class bem/be module-name "children"}] children)
-   [:div {:class bem/be module-name "logo"}
+   (into [:div {:class (bem/be module-name "children")} children])
+   [:div {:class (bem/be module-name "logo")}
     [:img {:src "/assets/images/logo_MLP"
            :alt "Městská knihovna v Praze"}]]])

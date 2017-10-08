@@ -6,5 +6,6 @@
 (reg-event-fx
   :app/initialize
   [trim-v]
-  (fn [{:keys [db]} [response]]
-    {:db (assoc db :api (js->clj response))}))
+  (fn [{:keys [db]} [api-endpoints]]
+    {:db (-> db (assoc :api (js->clj api-endpoints))
+                (assoc :view :home))}))

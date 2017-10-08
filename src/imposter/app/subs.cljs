@@ -7,3 +7,9 @@
   :app/loading?
   (fn [db _]
     (empty? (:api db))))
+
+
+(reg-sub
+  :app/view
+  (fn [db _]
+    (:view db)))
