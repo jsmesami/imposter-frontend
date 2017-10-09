@@ -9,8 +9,9 @@
 
 (defroutes app-routes
            (route/resources "/" {:root "public"})
-           #(GET "/" [] (-> (response/resource-response "index.html" {:root "public"})
-                            (response/content-type "text/html")))
+           #(GET "/" [] (response/content-type
+                          (response/resource-response "index.html" {:root "public"})
+                          "text/html"))
            (route/not-found "Nenalezeno"))
 
 

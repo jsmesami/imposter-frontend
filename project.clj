@@ -25,8 +25,9 @@
                  [ring/ring-defaults "0.3.1"]
                  [tailrecursion/ring-proxy "2.0.0-SNAPSHOT"]]
 
-  :plugins [[lein-figwheel "0.5.13"]
-            [lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]]
+  :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
+            [lein-figwheel "0.5.13"]
+            [lein-kibit "0.1.5"]]
 
   :source-paths ["src"]
 
