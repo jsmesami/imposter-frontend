@@ -4,20 +4,22 @@
     [day8.re-frame.http-fx]
     [reagent.format :refer [format]]
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
+    [imposter.app.db :refer [initial-db]]
     [imposter.app.settings :refer [api-uri default-request-timeout]]))
 
 
 (reg-event-fx
   :app/initialize
   (fn [_]
-    {:db {:view :home}
+    {:db initial-db
      :dispatch [:app/fetch-api-urls]}))
 
 
 (reg-event-fx
   :app/fetch-api-urls
-  (fn [_]
-    {:http-xhrio {:method          :get
+  (fn [{:keys [db]} [_]]
+    {:db (assoc db :loading? true)
+     :http-xhrio {:method          :get
                   :uri             api-uri
                   :timeout         default-request-timeout
                   :format          (ajax/json-request-format)
@@ -29,8 +31,9 @@
 (reg-event-fx
   :app/bad-response
   [trim-v]
-  (fn [_ [message response]]
-    {:app/log [(str "Request error: " (:debug-message response)) :error]
+  (fn [{:keys [db]} [message response]]
+    {:db (assoc db :loading? false)
+     :app/log [(str "Request error: " (:debug-message response)) :error]
      :dispatch [:flash/add-message :error message]}))
 
 
@@ -39,15 +42,18 @@
   [trim-v]
   (fn [{:keys [db]} [response]]
     (let [api-endpoints (js->clj response)]
-      {:db (assoc db :api api-endpoints)
+      {:db (-> db
+               (assoc :loading? false)
+               (assoc :api api-endpoints))
        :app/dispatch-fetch-resources (seq api-endpoints)})))
 
 
 (reg-event-fx
   :app/fetch-resource
   [trim-v]
-  (fn [_ [res endpoint]]
-    {:http-xhrio {:method          :get
+  (fn [{:keys [db]} [res endpoint]]
+    {:db (assoc db :loading? true)
+     :http-xhrio {:method          :get
                   :uri             endpoint
                   :timeout         default-request-timeout
                   :format          (ajax/json-request-format)
@@ -60,4 +66,6 @@
   :app/save-resource
   [trim-v]
   (fn [db [res data]]
-    (assoc-in db [:resources res] (js->clj data))))
+    (-> db
+        (assoc :loading? false)
+        (assoc-in [:resources res] (js->clj data)))))
