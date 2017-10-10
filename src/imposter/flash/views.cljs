@@ -7,7 +7,7 @@
 (def module-name "flash")
 
 
-(defn- flash-message
+(defn- message
   [id severity text]
   [:div {:class (bem module-name "message" [severity])}
    [:div {:class (bem/bm module-name "text")}
@@ -23,4 +23,4 @@
     [:div {:class module-name}
      (for [[id {:keys [severity text]}] (seq messages)]
        ^{:key id}
-       [flash-message id severity text])]))
+       [message id severity text])]))

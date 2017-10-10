@@ -1,1 +1,3 @@
-(ns imposter.home.core)
+(ns imposter.home.core
+  (:require
+    [imposter.home.components.core]))

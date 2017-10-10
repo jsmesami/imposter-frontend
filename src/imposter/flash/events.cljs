@@ -6,7 +6,7 @@
 (reg-event-fx
   :flash/add-message
   [(inject-cofx :app/get-id) trim-v]
-  (fn [{:keys [db id]} [[severity text]]]
+  (fn [{:keys [db id]} [severity text]]
     {:db (assoc-in db [:flash :messages id] {:severity severity, :text text})}))
 
 

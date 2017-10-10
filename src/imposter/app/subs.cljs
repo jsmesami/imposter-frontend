@@ -6,10 +6,16 @@
 (reg-sub
   :app/loading?
   (fn [db _]
-    (empty? (:api db))))
+    (empty? (:resources db))))
 
 
 (reg-sub
   :app/view
   (fn [db _]
     (:view db)))
+
+
+(reg-sub
+  :app/resources
+  (fn [db _]
+    (:resources db)))

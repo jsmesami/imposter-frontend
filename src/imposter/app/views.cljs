@@ -11,7 +11,7 @@
   (view-id->view @(subscribe [:app/view])))
 
 
-(defn layout
+(defn app
   []
   [:div
    [loader]

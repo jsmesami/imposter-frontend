@@ -3,18 +3,13 @@
     [reagent.core :as reagent]
     [re-frame.core :as reframe]
     [imposter.app.core]
+    [imposter.app.views :refer [app]]
     [imposter.flash.core]
     [imposter.generator.core]
-    [imposter.net.core]
-    [imposter.app.views :refer [layout]]))
+    [imposter.home.core]))
 
 
-(defn app
-  []
-  layout)
-
-
-(defn render-app
+(defn render!
   []
   (reagent/render
     [app]
@@ -23,10 +18,10 @@
 
 (defn ^:export main
   []
-  (reframe/dispatch-sync [:net/load-api-urls])
-  (render-app))
+  (reframe/dispatch-sync [:app/initialize])
+  (render!))
 
 
 (defn on-js-reload
   []
-  (render-app))
+  (render!))

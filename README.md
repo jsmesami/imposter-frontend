@@ -16,7 +16,7 @@ A standalone repository for single-page JS application consuming
 * Node.js, Yarn, Gulp 
 * Java 8, [Leiningen](https://leiningen.org/) 2.7+
 
-### Diving In
+### Environment
 
 To get an interactive development environment for ClojureScript run:
 
@@ -25,10 +25,6 @@ To get an interactive development environment for ClojureScript run:
 and open your browser at [localhost:3449](http://localhost:3449/).
 This will auto compile and send all changes to the browser without the
 need to reload. 
-
-For better REPL experience use rlwrap
-    
-    rlwrap lein dev
 
 To start working on Sass files run:
 

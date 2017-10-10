@@ -1,14 +1,18 @@
 (ns imposter.home.views
   (:require
-    [imposter.components.navbar :refer [navbar]]))
+    [re-frame.core :refer [subscribe]]
+    [imposter.components.navbar :refer [navbar]]
+    [imposter.home.components.poster-list :refer [poster-list]]))
 
 
-(defn new-poster-button
+(defn create-poster-button
   [])
 
 
 (defn home
   []
-  [:div
-   [navbar new-poster-button]
-   [:h1 "Home"]])
+  (let [resources @(subscribe [:app/resources])]
+    [:div
+     [navbar create-poster-button]
+     [poster-list (:posters resources)]
+     [:h1 "Home"]]))
