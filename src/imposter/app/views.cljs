@@ -6,9 +6,9 @@
     [imposter.flash.views :refer [flash-messages]]))
 
 
-(defn view
+(defn current-view
   []
-  (view-id->view @(subscribe [:app/view])))
+  (view-id->view @(subscribe [:app/current-view])))
 
 
 (defn app
@@ -16,4 +16,4 @@
   [:div
    [loader]
    [flash-messages]
-   [view]])
+   [current-view]])

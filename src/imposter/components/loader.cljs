@@ -6,5 +6,5 @@
 
 (defn loader
   []
-  (let [loading? @(subscribe [:app/loading?])]
+  (let [loading? @(subscribe [:net/loading?])]
     [:div {:class (bem/bm "loader" [(when loading? "loading")])}]))

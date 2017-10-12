@@ -12,6 +12,7 @@
                  [org.clojure/tools.nrepl "0.2.13"]
                  [binaryage/devtools "0.9.4"]
                  [cljs-ajax "0.7.2"]
+                 [com.cemerick/url "0.1.1"]
                  [reagent "0.7.0"]
                  [reagent-utils "0.2.1"]
                  [re-frame "0.10.1"]

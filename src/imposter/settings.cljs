@@ -1,4 +1,4 @@
-(ns imposter.app.settings)
+(ns imposter.settings)
 
 
 (def api-uri "/api/")

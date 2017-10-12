@@ -4,18 +4,6 @@
 
 
 (reg-sub
-  :app/loading?
-  (fn [db _]
-    (:loading? db)))
-
-
-(reg-sub
-  :app/view
+  :app/current-view
   (fn [db _]
     (get-in db [:views :current])))
-
-
-(reg-sub
-  :app/resources
-  (fn [db _]
-    (:resources db)))
