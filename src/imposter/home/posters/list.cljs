@@ -1,4 +1,4 @@
-(ns imposter.home.components.poster-list
+(ns imposter.home.posters.list
   (:require
     [reagent.format :refer [format]]
     [re-frame.core :refer [subscribe dispatch]]
@@ -11,11 +11,18 @@
 (defn pagination
   [posters]
   (let [loading? @(subscribe [:net/loading?])
-        filter @(subscribe [:home/poster-filter])]
+        offset (get-in posters [:filter :offset])
+        can-go-bw? (pos? offset)
+        can-go-fw? (> (- offset (:count posters)) 0)
+        paginate #(dispatch [:home/posters-update-filter {:offset %}])]
     [:div.poster-pagination
      [button "novější"
+      :on-click #(paginate (- offset posters-per-page))
+      :enabled? can-go-bw?
       :busy? loading?]
      [button "starší"
+      :on-click #(paginate (+ offset posters-per-page))
+      :enabled? can-go-fw?
       :busy? loading?]]))
 
 
@@ -28,13 +35,13 @@
 (defn posters-thumbs
   [posters]
   [:div
-   (for [spec posters]
+   (for [spec (:list posters)]
      ^{:key (:id spec)}
      [poster-thumb spec])])
 
 
 (defn posters-stub
-  [posters-per-page]
+  []
   [:div
    (for [stub (range posters-per-page)]
      ^{:key stub}
@@ -43,11 +50,10 @@
 
 (defn poster-list
   []
-  (let [posters @(subscribe [:home/poster-list])
-        poster-filter @(subscribe [:home/poster-filter])]
-    (if posters
+  (let [posters @(subscribe [:home/posters])]
+    (if (:list posters)
       [:div.poster-list
        [posters-thumbs posters]
        [pagination posters]]
       [:div.poster-list
-       [posters-stub (:posters-per-page poster-filter)]])))
+       [posters-stub]])))

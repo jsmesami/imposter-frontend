@@ -10,4 +10,4 @@
   (fn [_]
     {:db AppInitial
      :dispatch [:net/fetch-resource api-uri [:api]
-                :dispatch-after [:home/reload-posters]]}))
+                :dispatch-after [:home/posters-reload]]}))

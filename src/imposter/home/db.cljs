@@ -17,8 +17,9 @@
 
 
 (def HomeViewInitial
-  {:poster-filter PosterFilterInitial
-   :poster-list []})
+  {:posters {:filter PosterFilterInitial
+             :count 0
+             :list []}})
 
 
 (defn filter->query-string

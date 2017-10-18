@@ -10,26 +10,29 @@
 (reg-event-fx
   :net/fetch-resource
   [trim-v]
-  (fn [{:keys [db]} [uri save-path & {:keys [error-msg dispatch-after]
-                                      :or   {error-msg "Spojení se nezdařilo."}}]]
+  (fn [{:keys [db]} [uri save-path & {:keys [error-msg translate dispatch-after]
+                                      :or   {error-msg "Spojení se nezdařilo."
+                                             translate (fn [src] src)}}]]
     {:db (assoc-in db [:net :loading] true)
      :http-xhrio {:method          :get
                   :uri             uri
                   :timeout         default-request-timeout
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})
-                  :on-success      [:net/success save-path dispatch-after]
+                  :on-success      [:net/success save-path translate dispatch-after]
                   :on-failure      [:net/failure error-msg]}}))
 
 
 (reg-event-fx
   :net/success
   [trim-v]
-  (fn [{:keys [db]} [save-path dispatch-after response]]
-    {:db (-> db
+  (fn [{:keys [db]} [save-path translate dispatch-after response]]
+    {:dispatch-n [dispatch-after]
+     :db (-> db
              (assoc-in [:net :loading] false)
-             (assoc-in save-path (js->clj response)))
-     :dispatch-n [dispatch-after]}))
+             (assoc-in save-path (-> response
+                                     js->clj
+                                     translate)))}))
 
 
 (reg-event-fx
