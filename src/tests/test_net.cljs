@@ -3,8 +3,8 @@
     [cljs.test :refer-macros [deftest is]]
     [day8.re-frame.test :as rf-test]
     [re-frame.core :refer [dispatch subscribe reg-sub]]
-    [flash.subs]
-    [net.events]))
+    [mkp.imposter.flash.subs]
+    [mkp.imposter.net.events]))
 
 
 (reg-sub
@@ -13,7 +13,7 @@
     db))
 
 
-(deftest test-flash
+(deftest test-net
   (rf-test/run-test-sync
     (let [db (subscribe [:net/db])
           save-path [:test :path]

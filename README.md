@@ -14,7 +14,7 @@ A standalone repository for single-page JS application consuming
 ### Prequisities
 
 * Node.js, Yarn, Gulp 
-* Java 8, [Leiningen](https://leiningen.org/) 2.7+
+* Java 8, [Leiningen](https://leiningen.org/) 2.8
 
 ### Environment
 
@@ -33,6 +33,15 @@ To start working on Sass files run:
 This will watch Sass sources for changes and feed compiled stylesheets, 
 including sourcemaps, into the browser.
 
+## Test
+
+### Prequisities
+
+* Firefox (chosen over Chrome because I don't have one)
+
+
+    lein test
+
 ## Build
 
 To create a production build run:
@@ -42,10 +51,6 @@ To create a production build run:
 To clean all installed and compiled files:
 
     make clean
-
-## Test
-
-    lein test
 
 ## License
 

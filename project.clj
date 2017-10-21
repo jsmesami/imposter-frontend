@@ -4,13 +4,12 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :min-lein-version "2.7.1"
+  :min-lein-version "2.8.0"
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.908"]
+                 [org.clojure/clojurescript "1.9.946"]
                  [org.clojure/core.async  "0.3.443"]
                  [org.clojure/tools.nrepl "0.2.13"]
-                 [binaryage/devtools "0.9.4"]
                  [cljs-ajax "0.7.2"]
                  [com.cemerick/url "0.1.1"]
                  [reagent "0.7.0"]
@@ -20,6 +19,7 @@
                  [day8.re-frame/test "0.1.5"]
                  [figwheel-sidecar "0.5.13"]
                  [com.cemerick/piggieback "0.2.2"]
+                 [binaryage/devtools "0.9.4"]
                  [re-frisk "0.5.0"]
                  ;; Development webserver:
                  [clj-http "3.7.0"]
@@ -47,14 +47,14 @@
 
   :cljsbuild {:builds
               [{:id "dev"
-                :source-paths ["src/imposter"]
+                :source-paths ["src/mkp/imposter"]
 
                 ;; The presence of a :figwheel configuration here will cause figwheel to inject the figwheel client
                 ;; into your build
-                :figwheel {:on-jsload "imposter.core/on-js-reload"}
+                :figwheel {:on-jsload "mkp.imposter.core/on-js-reload"}
                            ;:open-urls ["http://localhost:3449"]}
 
-                :compiler {:main imposter.core
+                :compiler {:main mkp.imposter.core
                            :parallel-build true
                            :asset-path "js/out/dev"
                            :output-to "resources/public/js/imposter.js"
@@ -62,11 +62,11 @@
                            :source-map-timestamp true
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
-                           :preloads [devtools.preload re-frisk.preload imposter.preload]}}
+                           :preloads [devtools.preload re-frisk.preload mkp.imposter.preload]}}
 
                {:id "min"
-                :source-paths ["src/imposter"]
-                :compiler {:main imposter.core
+                :source-paths ["src/mkp/imposter"]
+                :compiler {:main mkp.imposter.core
                            :parallel-build true
                            :output-to "resources/public/js/imposter.js"
                            :output-dir "resources/public/js/out/min"

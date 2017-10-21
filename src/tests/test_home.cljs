@@ -1,0 +1,11 @@
+(ns tests.test-home
+  (:require
+    [cljs.test :refer-macros [deftest is]]
+    [mkp.imposter.home.db :refer [filter->query-string]]))
+
+
+(deftest test-filter->qs
+  (let [f {:a 1
+           "b" 2
+           :c "žluťoučký kůň"}]
+    (is (= "?a=1&b=2&c=%C5%BElu%C5%A5ou%C4%8Dk%C3%BD%20k%C5%AF%C5%88" (filter->query-string f)))))

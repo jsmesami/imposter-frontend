@@ -3,15 +3,15 @@
     [cljs.test :refer-macros [deftest is]]
     [day8.re-frame.test :as rf-test]
     [re-frame.core :refer [dispatch subscribe]]
-    [app.effects]
-    [flash.events]
-    [flash.subs]))
+    [mkp.imposter.app.effects]
+    [mkp.imposter.flash.events]
+    [mkp.imposter.flash.subs]))
 
 
 (deftest test-flash
   (rf-test/run-test-sync
     (let [messages (subscribe [:flash/messages])]
-      (is (= 0 (count @messages)))
+      (is (zero? (count @messages)))
 
       (dispatch [:flash/add-message :success "success"])
       (is (= 1 (count @messages)))
@@ -32,4 +32,4 @@
         (is (= "error" (get-in @messages [id2 :text])))
 
         (dispatch [:flash/remove-message id2])
-        (is (= 0 (count @messages)))))))
+        (is (zero? (count @messages)))))))
