@@ -1,7 +1,7 @@
-(ns imposter.home.posters.filter
+(ns home.posters.filter
   (:require
     [re-frame.core :refer [dispatch subscribe]]
-    [imposter.components.basic :refer [button]]))
+    [components.basic :refer [button]]))
 
 
 (defn poster-filter

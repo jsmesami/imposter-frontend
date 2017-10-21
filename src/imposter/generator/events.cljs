@@ -1,1 +1,1 @@
-(ns imposter.generator.events)
+(ns generator.events)

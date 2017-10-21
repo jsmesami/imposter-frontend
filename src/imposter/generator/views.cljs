@@ -1,1 +1,1 @@
-(ns imposter.generator.views)
+(ns generator.views)

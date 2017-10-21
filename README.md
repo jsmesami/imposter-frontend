@@ -43,6 +43,10 @@ To clean all installed and compiled files:
 
     make clean
 
+## Test
+
+    lein test
+
 ## License
 
 Copyright © 2017 Ondřej Nejedlý

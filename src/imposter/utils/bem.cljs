@@ -1,4 +1,4 @@
-(ns imposter.utils.bem
+(ns utils.bem
   (:require
     [clojure.string :refer [blank? join]]))
 

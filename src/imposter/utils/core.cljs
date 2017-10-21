@@ -1,1 +1,1 @@
-(ns imposter.utils.core)
+(ns utils.core)

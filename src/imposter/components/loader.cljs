@@ -1,7 +1,7 @@
-(ns imposter.components.loader
+(ns components.loader
   (:require
     [re-frame.core :refer [subscribe]]
-    [imposter.utils.bem :as bem]))
+    [utils.bem :as bem]))
 
 
 (defn loader

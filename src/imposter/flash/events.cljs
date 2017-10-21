@@ -1,4 +1,4 @@
-(ns imposter.flash.events
+(ns flash.events
   (:require
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v inject-cofx]]))
 

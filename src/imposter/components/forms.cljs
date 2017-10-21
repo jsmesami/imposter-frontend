@@ -1,7 +1,7 @@
-(ns imposter.components.forms
+(ns components.forms
   (:require
-    [imposter.components.basic :refer [icon]]
-    [imposter.utils.bem :as bem]))
+    [components.basic :refer [icon]]
+    [utils.bem :as bem]))
 
 
 (defn form-message

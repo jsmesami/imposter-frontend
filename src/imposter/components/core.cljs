@@ -1,1 +1,1 @@
-(ns imposter.components.core)
+(ns components.core)

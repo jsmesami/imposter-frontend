@@ -1,4 +1,4 @@
-(ns imposter.net.core
+(ns net.core
   (:require
-    [imposter.net.events]
-    [imposter.net.subs]))
+    [net.events]
+    [net.subs]))

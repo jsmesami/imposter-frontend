@@ -1,7 +1,7 @@
-(ns imposter.flash.views
+(ns flash.views
   (:require
     [re-frame.core :refer [dispatch subscribe]]
-    [imposter.utils.bem :as bem :refer [bem]]))
+    [utils.bem :as bem :refer [bem]]))
 
 
 (def module-name "flash")

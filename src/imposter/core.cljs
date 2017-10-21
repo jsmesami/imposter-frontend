@@ -1,13 +1,13 @@
-(ns imposter.core
+(ns core
   (:require
     [reagent.core :as reagent]
     [re-frame.core :as reframe]
-    [imposter.app.core]
-    [imposter.app.views :refer [app]]
-    [imposter.flash.core]
-    [imposter.generator.core]
-    [imposter.home.core]
-    [imposter.net.core]))
+    [app.core]
+    [app.views :refer [app]]
+    [flash.core]
+    [generator.core]
+    [home.core]
+    [net.core]))
 
 
 (defn render!

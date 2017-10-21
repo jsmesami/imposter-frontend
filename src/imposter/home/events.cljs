@@ -1,7 +1,7 @@
-(ns imposter.home.events
+(ns home.events
   (:require
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
-    [imposter.home.db :refer [filter->query-string posters-per-page]]))
+    [home.db :refer [filter->query-string posters-per-page]]))
 
 
 (reg-event-fx

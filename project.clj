@@ -17,6 +17,7 @@
                  [reagent-utils "0.2.1"]
                  [re-frame "0.10.1"]
                  [day8.re-frame/http-fx "0.1.4"]
+                 [day8.re-frame/test "0.1.5"]
                  [figwheel-sidecar "0.5.13"]
                  [com.cemerick/piggieback "0.2.2"]
                  [re-frisk "0.5.0"]
@@ -28,6 +29,7 @@
                  [tailrecursion/ring-proxy "2.0.0-SNAPSHOT"]]
 
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
+            [lein-doo "0.1.8"]
             [lein-figwheel "0.5.13"]
             [lein-kibit "0.1.5"]]
 
@@ -45,7 +47,7 @@
 
   :cljsbuild {:builds
               [{:id "dev"
-                :source-paths ["src"]
+                :source-paths ["src/imposter"]
 
                 ;; The presence of a :figwheel configuration here will cause figwheel to inject the figwheel client
                 ;; into your build
@@ -63,13 +65,20 @@
                            :preloads [devtools.preload re-frisk.preload imposter.preload]}}
 
                {:id "min"
-                :source-paths ["src"]
+                :source-paths ["src/imposter"]
                 :compiler {:main imposter.core
                            :parallel-build true
                            :output-to "resources/public/js/imposter.js"
                            :output-dir "resources/public/js/out/min"
                            :optimizations :advanced
-                           :pretty-print false}}]}
+                           :pretty-print false}}
+               {:id "test"
+                :source-paths ["src"]
+                :compiler {:output-to "resources/public/js/imposter.js"
+                           :output-dir "resources/public/js/out/test"
+                           :main tests.core
+                           :optimizations :none}}]}
 
-  :aliases {"dev" ["do" "clean," "figwheel" "dev"]
-            "build" ["do" "clean," "cljsbuild" "once" "min"]})
+  :aliases {"build" ["do" "clean," "cljsbuild" "once" "min"]
+            "dev" ["figwheel" "dev"]
+            "test" ["doo" "firefox" "test" "once"]})

@@ -1,1 +1,1 @@
-(ns imposter.home.posters.core)
+(ns home.posters.core)

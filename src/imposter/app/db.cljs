@@ -1,7 +1,7 @@
-(ns imposter.app.db
+(ns app.db
   (:require
-    [imposter.home.db :refer [HomeViewInitial]]
-    [imposter.home.views :refer [home]]))
+    [home.db :refer [HomeViewInitial]]
+    [home.views :refer [home]]))
 
 
 (def AppInitial

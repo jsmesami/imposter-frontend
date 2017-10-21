@@ -1,8 +1,8 @@
-(ns imposter.home.views
+(ns home.views
   (:require
-    [imposter.components.navbar :refer [navbar]]
-    [imposter.home.posters.filter :refer [poster-filter]]
-    [imposter.home.posters.list :refer [poster-list]]))
+    [components.navbar :refer [navbar]]
+    [home.posters.filter :refer [poster-filter]]
+    [home.posters.list :refer [poster-list]]))
 
 
 (defn home

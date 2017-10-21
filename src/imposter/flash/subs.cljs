@@ -1,4 +1,4 @@
-(ns imposter.flash.subs
+(ns flash.subs
   (:require
     [re-frame.core :refer [reg-sub]]))
 

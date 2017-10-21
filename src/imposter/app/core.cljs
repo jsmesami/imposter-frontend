@@ -1,5 +1,5 @@
-(ns imposter.app.core
+(ns app.core
   (:require
-    [imposter.app.effects]
-    [imposter.app.events]
-    [imposter.app.subs]))
+    [app.effects]
+    [app.events]
+    [app.subs]))

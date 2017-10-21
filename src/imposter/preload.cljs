@@ -1,3 +1,3 @@
-(ns imposter.preload)
+(ns preload)
 
 (enable-console-print!)

@@ -1,10 +1,10 @@
-(ns imposter.home.posters.list
+(ns home.posters.list
   (:require
     [reagent.format :refer [format]]
     [re-frame.core :refer [subscribe dispatch]]
-    [imposter.components.basic :refer [button]]
-    [imposter.home.db :refer [posters-per-page]]
-    [imposter.utils.bem :as bem]
+    [components.basic :refer [button]]
+    [home.db :refer [posters-per-page]]
+    [utils.bem :as bem]
     [reagent.core :as reagent]))
 
 

@@ -1,4 +1,4 @@
-(ns imposter.components.backdrop
+(ns components.backdrop
   (:require
     [clojure.string :as string]
     [goog.dom.classes :as classes]

@@ -1,1 +1,1 @@
-(ns imposter.generator.subs)
+(ns generator.subs)

@@ -1,4 +1,4 @@
-(ns imposter.net.subs
+(ns net.subs
   (:require
     [re-frame.core :refer [reg-sub]]))
 

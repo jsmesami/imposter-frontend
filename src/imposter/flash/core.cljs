@@ -1,4 +1,4 @@
-(ns imposter.flash.core
+(ns flash.core
   (:require
-    [imposter.flash.events]
-    [imposter.flash.subs]))
+    [flash.events]
+    [flash.subs]))

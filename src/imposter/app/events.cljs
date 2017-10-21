@@ -1,8 +1,8 @@
-(ns imposter.app.events
+(ns app.events
   (:require
     [re-frame.core :refer [reg-event-fx]]
-    [imposter.app.db :refer [AppInitial]]
-    [imposter.settings :refer [api-uri]]))
+    [app.db :refer [AppInitial]]
+    [settings :refer [api-uri]]))
 
 
 (reg-event-fx

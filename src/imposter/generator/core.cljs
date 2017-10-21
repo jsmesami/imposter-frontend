@@ -1,4 +1,4 @@
-(ns imposter.generator.core
+(ns generator.core
   (:require
-    [imposter.generator.events]
-    [imposter.generator.subs]))
+    [generator.events]
+    [generator.subs]))

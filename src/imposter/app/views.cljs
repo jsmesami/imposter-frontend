@@ -1,9 +1,9 @@
-(ns imposter.app.views
+(ns app.views
   (:require
     [re-frame.core :refer [subscribe]]
-    [imposter.app.db :refer [view-id->view]]
-    [imposter.components.loader :refer [loader]]
-    [imposter.flash.views :refer [flash-messages]]))
+    [app.db :refer [view-id->view]]
+    [components.loader :refer [loader]]
+    [flash.views :refer [flash-messages]]))
 
 
 (defn current-view

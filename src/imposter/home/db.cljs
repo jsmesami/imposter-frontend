@@ -1,4 +1,4 @@
-(ns imposter.home.db
+(ns home.db
   (:require
     [cemerick.url :refer [url-encode]]))
 

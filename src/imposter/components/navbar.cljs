@@ -1,6 +1,6 @@
-(ns imposter.components.navbar
+(ns components.navbar
   (:require
-    [imposter.utils.bem :as bem]))
+    [utils.bem :as bem]))
 
 
 (def module-name "navbar")

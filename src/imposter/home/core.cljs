@@ -1,5 +1,5 @@
-(ns imposter.home.core
+(ns home.core
   (:require
-    [imposter.home.events]
-    [imposter.home.posters.core]
-    [imposter.home.subs]))
+    [home.events]
+    [home.posters.core]
+    [home.subs]))

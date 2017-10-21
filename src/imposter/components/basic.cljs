@@ -1,7 +1,7 @@
-(ns imposter.components.basic
+(ns components.basic
   (:require
     [clojure.string :refer [join]]
-    [imposter.utils.bem :refer [bem] :as bem]))
+    [utils.bem :refer [bem] :as bem]))
 
 
 (defn svg

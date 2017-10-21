@@ -1,1 +1,1 @@
-(ns imposter.generator.db)
+(ns generator.db)

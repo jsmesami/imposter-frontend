@@ -1,4 +1,4 @@
-(ns imposter.app.effects
+(ns app.effects
   (:require
     [re-frame.core :refer [reg-cofx reg-fx dispatch]]))
 

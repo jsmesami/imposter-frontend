@@ -1,10 +1,10 @@
-(ns imposter.net.events
+(ns net.events
   (:require
     [ajax.core :as ajax]
     [day8.re-frame.http-fx]
     [reagent.format :refer [format]]
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
-    [imposter.settings :refer [default-request-timeout]]))
+    [settings :refer [default-request-timeout]]))
 
 
 (reg-event-fx
