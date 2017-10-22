@@ -1,6 +1,6 @@
 (ns tests.test-net
   (:require
-    [cljs.test :refer-macros [deftest is]]
+    [cljs.test :refer-macros [deftest testing is are]]
     [day8.re-frame.test :as rf-test]
     [re-frame.core :refer [dispatch subscribe reg-sub]]
     [mkp.imposter.flash.subs]
@@ -14,17 +14,22 @@
 
 
 (deftest test-net
-  (rf-test/run-test-sync
-    (let [db (subscribe [:net/db])
-          save-path [:test :path]
-          response [1 2 3]
-          translate (fn [r] {:response r})
-          messages (subscribe [:flash/messages])]
+  (testing "resources fetching"
+    (rf-test/run-test-sync
 
-      (dispatch [:net/success save-path translate nil response])
-      (is (= response (:response (get-in @db save-path))))
+      (let [db (subscribe [:net/db])
+            save-path [:test :path]
+            response [1 2 3]
+            translate (fn [r] {:response r})
+            messages (subscribe [:flash/messages])]
 
-      (dispatch [:net/failure "error" {}])
-      (let [msg-id (-> @messages keys first)]
-        (is (= :error (get-in @messages [msg-id :severity])))
-        (is (= "error" (get-in @messages [msg-id :text])))))))
+        (testing "successful response saving and transformation"
+          (dispatch [:net/success save-path translate nil response])
+          (is (= response (:response (get-in @db save-path)))))
+
+        (testing "failed request behaviour"
+          (dispatch [:net/failure "error"])
+          (let [msg-id (-> @messages keys first)]
+            (are [a b] (= a b)
+              :error (get-in @messages [msg-id :severity])
+              "error" (get-in @messages [msg-id :text]))))))))
