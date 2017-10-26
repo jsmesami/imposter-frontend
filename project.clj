@@ -1,6 +1,8 @@
 (defproject imposter-frontend "0.1.0"
   :description "Imposter is a poster generation tool for Prague Municipal Library"
+
   :url "https://github.com/jsmesami/imposter-frontend"
+
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
@@ -9,29 +11,30 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.946"]
                  [org.clojure/core.async  "0.3.443"]
-                 [org.clojure/tools.nrepl "0.2.13"]
                  [cljs-ajax "0.7.2"]
                  [com.cemerick/url "0.1.1"]
                  [reagent "0.7.0"]
                  [reagent-utils "0.2.1"]
                  [re-frame "0.10.1"]
-                 [day8.re-frame/http-fx "0.1.4"]
-                 [day8.re-frame/test "0.1.5"]
-                 [figwheel-sidecar "0.5.13"]
-                 [com.cemerick/piggieback "0.2.2"]
-                 [binaryage/devtools "0.9.4"]
-                 [re-frisk "0.5.0"]
-                 ;; Development webserver:
-                 [clj-http "3.7.0"]
-                 [compojure "1.6.0"]
-                 [ring "1.6.2"]
-                 [ring/ring-defaults "0.3.1"]
-                 [tailrecursion/ring-proxy "2.0.0-SNAPSHOT"]]
+                 [day8.re-frame/http-fx "0.1.4"]]
 
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-doo "0.1.8"]
             [lein-figwheel "0.5.13"]
             [lein-kibit "0.1.5"]]
+
+  :profiles {:dev {:dependencies [[org.clojure/tools.nrepl "0.2.13"]
+                                  [figwheel-sidecar "0.5.13"]
+                                  [com.cemerick/piggieback "0.2.2"]
+                                  [binaryage/devtools "0.9.4"]
+                                  [day8.re-frame/test "0.1.5"]
+                                  [day8.re-frame/trace "0.1.10"]
+                                  ;; Development webserver:
+                                  [clj-http "3.7.0"]
+                                  [compojure "1.6.0"]
+                                  [ring "1.6.2"]
+                                  [ring/ring-defaults "0.3.1"]
+                                  [tailrecursion/ring-proxy "2.0.0-SNAPSHOT"]]}}
 
   :source-paths ["src"]
 
@@ -60,9 +63,10 @@
                            :output-to "resources/public/js/imposter.js"
                            :output-dir "resources/public/js/out/dev"
                            :source-map-timestamp true
+                           :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
-                           :preloads [devtools.preload re-frisk.preload mkp.imposter.preload]}}
+                           :preloads [devtools.preload day8.re-frame.trace.preload mkp.imposter.preload]}}
 
                {:id "min"
                 :source-paths ["src/mkp/imposter"]
