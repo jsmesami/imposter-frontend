@@ -9,11 +9,10 @@
 (def PosterFilterInitial
   {:limit posters-per-page
    :offset 0
-   :datetime-from nil
-   :datetime-to nil
+   :since nil
+   :until nil
    :bureau nil
-   :template nil
-   :fulltext nil})
+   :spec nil})
 
 
 (def HomeViewInitial

@@ -6,7 +6,7 @@ Municipal Library of Prague.
 ## Overview
 
 A standalone repository for single-page JS application consuming 
-[backend](FIXME:url) API. The app is written in 
+[backend](https://github.com/jsmesami/imposter-backend) API. The app is written in 
 [ClojureScript](https://clojurescript.org/) for better maintainability.
 
 ## Development
