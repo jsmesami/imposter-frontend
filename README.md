@@ -37,8 +37,7 @@ including sourcemaps, into the browser.
 
 ### Prequisities
 
-* Firefox (chosen over Chrome because I don't have one)
-
+Firefox (chosen over Chrome because I don't have one)
 
     lein test
 
