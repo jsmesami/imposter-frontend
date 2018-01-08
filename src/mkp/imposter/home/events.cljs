@@ -13,7 +13,7 @@
           uri (str (get-in db [:api :posters]) (m->qs (:filter posters)))]
       {:dispatch [:net/fetch-resource uri posters-path
                   :error-msg "Nepodařilo se nahrát plakáty."
-                  :translate (fn [response] (-> posters
+                  :transform (fn [response] (-> posters
                                                 (assoc :count (:count response))
                                                 (assoc :list (:results response))))]})))
 

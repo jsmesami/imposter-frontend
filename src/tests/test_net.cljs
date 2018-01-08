@@ -20,11 +20,11 @@
       (let [db (subscribe [:net/db])
             save-path [:test :path]
             response [1 2 3]
-            translate (fn [r] {:response r})
+            transform (fn [r] {:response r})
             messages (subscribe [:flash/messages])]
 
         (testing "successful response saving and transformation"
-          (dispatch [:net/success save-path translate nil response])
+          (dispatch [:net/success save-path transform nil response])
           (is (= response (:response (get-in @db save-path)))))
 
         (testing "failed request behaviour"

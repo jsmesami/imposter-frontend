@@ -1,5 +1,5 @@
 (defproject imposter-frontend "0.1.0"
-  :description "Imposter is a poster generation tool for Prague Municipal Library"
+  :description "Imposter is a poster generation tool for Municipal Library of Prague"
 
   :url "https://github.com/jsmesami/imposter-frontend"
 
@@ -47,6 +47,8 @@
              :server-port 3449
              :css-dirs ["resources/public/css"] ;; watch and update CSS
              :ring-handler dev-app/app}
+
+  :doo {:paths {:karma "node_modules/karma/bin/karma"}}
 
   :cljsbuild {:builds
               [{:id "dev"
