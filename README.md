@@ -13,7 +13,7 @@ A standalone repository for single-page JS application consuming
 
 ### Prequisities
 
-* Node.js, Yarn, Gulp 
+* Node.js, Yarn, Gulp 3
 * Java 8, [Leiningen](https://leiningen.org/) 2.8
 
 ### Environment

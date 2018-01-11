@@ -10,25 +10,26 @@
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.946"]
-                 [org.clojure/core.async  "0.3.443"]
-                 [cljs-ajax "0.7.2"]
+                 [org.clojure/core.async  "0.4.474"]
+                 [cljs-ajax "0.7.3"]
                  [com.cemerick/url "0.1.1"]
                  [reagent "0.7.0"]
                  [reagent-utils "0.2.1"]
-                 [re-frame "0.10.1"]
+                 [re-frame "0.10.3"]
                  [day8.re-frame/http-fx "0.1.4"]]
 
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-doo "0.1.8"]
-            [lein-figwheel "0.5.13"]
-            [lein-kibit "0.1.5"]]
+            [lein-figwheel "0.5.14"]
+            [lein-kibit "0.1.6"]]
 
   :profiles {:dev {:dependencies [[org.clojure/tools.nrepl "0.2.13"]
-                                  [figwheel-sidecar "0.5.13"]
+                                  [figwheel-sidecar "0.5.14"]
                                   [com.cemerick/piggieback "0.2.2"]
-                                  [binaryage/devtools "0.9.4"]
+                                  [binaryage/devtools "0.9.9"]
+                                  [doo "0.1.8"]
                                   [day8.re-frame/test "0.1.5"]
-                                  [day8.re-frame/trace "0.1.10"]
+                                  [day8.re-frame/trace "0.1.16"]
                                   ;; Development webserver:
                                   [clj-http "3.7.0"]
                                   [compojure "1.6.0"]
@@ -52,7 +53,7 @@
 
   :cljsbuild {:builds
               [{:id "dev"
-                :source-paths ["src/mkp/imposter"]
+                :source-paths ["src"]
 
                 ;; The presence of a :figwheel configuration here will cause figwheel to inject the figwheel client
                 ;; into your build
@@ -71,7 +72,7 @@
                            :preloads [devtools.preload day8.re-frame.trace.preload mkp.imposter.preload]}}
 
                {:id "min"
-                :source-paths ["src/mkp/imposter"]
+                :source-paths ["src"]
                 :compiler {:main mkp.imposter.core
                            :parallel-build true
                            :output-to "resources/public/js/imposter.js"
