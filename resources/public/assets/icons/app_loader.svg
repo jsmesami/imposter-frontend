@@ -1,0 +1,40 @@
+<svg id="app_loader" width="35.297" height="48" version="1.1" viewBox="0 0 35.297001 48" xmlns="http://www.w3.org/2000/svg">
+    <path d="m34.295 19.384v12.194c0 9.6996-5.4133 15.281-13.995 15.787v-6.1302c2.0454-0.28779
+        3.5865-1.0219 4.6441-2.1091 1.0346-1.0632 1.6008-2.6927 1.7498-4.3915 0.0015-0.03464 0.0056-0.87403
+        0.0099-0.91001h-7.0803v-14.44h14.672">
+        <animate
+            attributeType="XML"
+            attributeName="fill"
+            values="#c41100;#666466;#666466;#666466"
+            dur="0.8s"
+            repeatCount="indefinite">
+        </animate>
+    </path>
+    <path d="m19.623 15.454v-14.451h14.672v14.451h-14.672">
+        <animate
+            attributeType="XML"
+            attributeName="fill"
+            values="#666466;#c41100;#666466;#666466"
+            dur="0.8s"
+            repeatCount="indefinite">
+        </animate>
+    </path>
+    <path d="m0.99809 15.454v-14.451h14.672v14.451h-14.672">
+        <animate
+            attributeType="XML"
+            attributeName="fill"
+            values="#666466;#666466;#c41100;#666466"
+            dur="0.8s"
+            repeatCount="indefinite">
+        </animate>
+    </path>
+    <path d="m0.99809 33.84v-14.452h14.672v14.452h-14.672">
+        <animate
+            attributeType="XML"
+            attributeName="fill"
+            values="#666466;#666466;#666466;#c41100"
+            dur="0.8s"
+            repeatCount="indefinite">
+        </animate>
+    </path>
+</svg>

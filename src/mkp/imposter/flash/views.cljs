@@ -10,9 +10,9 @@
 (defn- message
   [id severity text]
   [:div {:class (bem module-name "message" [severity])}
-   [:div {:class (bem/bm module-name "text")}
+   [:div {:class (bem/be module-name "text")}
     text]
-   [:div {:class (bem/bm module-name "dismiss")
+   [:div {:class (bem/be module-name "dismiss")
           :on-click #(dispatch [:flash/remove-message id])}
     "\u00D7"]])
 
