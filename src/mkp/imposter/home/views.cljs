@@ -7,7 +7,7 @@
 
 (defn home
   []
-  [:div
+  [:div.container
    [navbar]
    [poster-filter]
    [poster-list]])

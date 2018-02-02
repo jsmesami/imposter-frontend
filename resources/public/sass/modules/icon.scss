@@ -1,0 +1,27 @@
+.icon {
+  display: inline-block;
+  width: .8em;
+  height: .8em;
+  margin: 0 .2em;
+
+  svg {
+    float: left;
+  }
+
+  .spinning {
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+        transform-origin: 50% 50%;
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    animation: spin 1s infinite linear
+  }
+
+  &__spinner svg {
+    opacity: .8
+  }
+}

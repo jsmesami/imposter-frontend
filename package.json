@@ -5,24 +5,21 @@
     "url": "https://github.com/jsmesami/imposter-frontend.git"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0",
     "frontend-dependencies": "^0.2.1",
-    "gridlex": "^2.6.1",
     "gulp": "^3.9.1",
     "gulp-clean-css": "^3.9.2",
     "gulp-concat": "^2.6.1",
     "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.4",
     "karma": "^2.0.0",
     "karma-cljs-test": "^0.1.0",
     "karma-firefox-launcher": "^1.1.0",
-    "normalize.css": "^7.0.0",
     "svgxuse": "^1.2.6"
   },
   "frontendDependencies": {
     "target": "resources/public/components",
     "packages": [
-      "gridlex",
-      "normalize.css",
+      "bootstrap",
       "svgxuse"
     ]
   },
