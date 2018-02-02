@@ -25,8 +25,8 @@
                  attrs {}
                  modifiers []}}]
   (let [states [(when-not enabled? "disabled") (when busy? "busy")]
-        default-attrs {:class (->> (bem/bm "button" modifiers)
-                                   (into states)
+        default-attrs {:class (->> (bem/bm "btn" modifiers)
+                                   (conj states)
                                    (join " "))
                        :on-click #(when (and (not busy?) enabled? on-click)
                                     (on-click %))}]
@@ -40,17 +40,18 @@
 
 
 (defn input
-  [& {:keys [enabled? value on-change on-key-press attrs modifiers]
+  [& {:keys [enabled? type value on-change on-key-press attrs modifiers]
       :or {enabled? true
+           type :text
            attrs {}
            modifiers []}}]
   (let [default-attrs {:default-value value
-                       :class (->> (bem "form-group" "input" modifiers))
+                       :class "form-control"
                        :on-change #(when (and enabled? on-change)
                                      (on-change (-> % .-target .-value)))
                        :on-key-press #(when (and enabled? on-key-press)
                                         (on-key-press %))
                        :disabled (when-not enabled? "disabled")
-                       :type :text}]
+                       :type type}]
     [:div
      [:input (merge default-attrs attrs)]]))
