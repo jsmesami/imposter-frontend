@@ -41,4 +41,4 @@
   (fn [{:keys [db]} [message response]]
     {:db (assoc-in db [:net :loading] false)
      :app/log [(str "Request error: " (:debug-message response)) :error]
-     :dispatch [:flash/add-message :error message]}))
+     :dispatch [:alert/add-message :error message]}))

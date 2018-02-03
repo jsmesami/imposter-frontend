@@ -4,7 +4,7 @@
     [re-frame.core :as reframe]
     [mkp.imposter.app.core]
     [mkp.imposter.app.views :refer [app]]
-    [mkp.imposter.flash.core]
+    [mkp.imposter.alert.core]
     [mkp.imposter.generator.core]
     [mkp.imposter.home.core]
     [mkp.imposter.net.core]))

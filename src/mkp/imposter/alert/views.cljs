@@ -1,10 +1,10 @@
-(ns mkp.imposter.flash.views
+(ns mkp.imposter.alert.views
   (:require
     [re-frame.core :refer [dispatch subscribe]]
     [mkp.imposter.utils.bem :as bem :refer [bem]]))
 
 
-(def module-name "flash")
+(def module-name "alert")
 
 
 (defn- message
@@ -13,13 +13,13 @@
    [:div {:class (bem/be module-name "text")}
     text]
    [:div {:class (bem/be module-name "dismiss")
-          :on-click #(dispatch [:flash/remove-message id])}
+          :on-click #(dispatch [:alert/remove-message id])}
     "\u00D7"]])
 
 
-(defn flash-messages
+(defn alert-messages
   []
-  (when-let [messages @(subscribe [:flash/messages])]
+  (when-let [messages @(subscribe [:alert/messages])]
     [:div {:class module-name}
      (for [[id {:keys [severity text]}] (seq messages)]
        ^{:key id}
