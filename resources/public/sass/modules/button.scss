@@ -1,0 +1,8 @@
+.btn {
+  &--primary {
+    @extend .btn-primary;
+  }
+  &--lg {
+    @extend .btn-lg;
+  }
+}

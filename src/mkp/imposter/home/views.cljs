@@ -9,7 +9,7 @@
 (defn button-create-poster
   []
   [button "Nový leták"
-   :classes ["btn-primary" "btn-lg"]])
+   :modifiers ["primary" "lg"]])
 
 
 (defn home
