@@ -8,8 +8,11 @@
 
 (defn navbar
   [& children]
-  [:div {:class module-name}
-   (into [:div {:class (bem/be module-name "children")} children])
-   [:div {:class (bem/be module-name "logo")}
+  [:div.row {:class module-name}
+   (->> children
+        (into [:div.col-sm-7
+               {:class (bem/be module-name "children")}]))
+   [:div.col-sm-5.d-none.d-sm-block
+    {:class (bem/be module-name "logo")}
     [:img {:src "/assets/images/logo_MLP.svg"
            :alt "Městská knihovna v Praze"}]]])

@@ -1,26 +1,24 @@
 let gulp = require('gulp'),
     sass = require('gulp-sass'),
-    cleanCSS = require('gulp-clean-css'),
-    concat = require('gulp-concat');
+    cleanCSS = require('gulp-clean-css');
 
 
 let sassDir = 'resources/public/sass',
-    sassSources = [`${sassDir}/*.scss`, `${sassDir}/modules/*.scss`],
+    sassSources = `${sassDir}/**/*.scss`,
+    sassMain = `${sassDir}/imposter.scss`,
     sassDestDir = 'resources/public/css';
 
 
 gulp.task('dev_sass', () => {
-    return gulp.src(sassSources)
+    return gulp.src(sassMain)
         .pipe(sass.sync().on('error', sass.logError))
-        .pipe(concat('imposter.css'))
         .pipe(gulp.dest(sassDestDir));
 });
 
 gulp.task('build_sass', () => {
-    return gulp.src(sassSources)
+    return gulp.src(sassMain)
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(cleanCSS())
-        .pipe(concat('imposter.css'))
         .pipe(gulp.dest(sassDestDir));
 });
 

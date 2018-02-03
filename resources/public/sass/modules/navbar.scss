@@ -1,0 +1,12 @@
+.navbar {
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  padding: $grid-gutter-width/2;
+  margin-bottom: $grid-gutter-width;
+  &__logo {
+    img {
+      float: right;
+      width: 310px;
+    }
+  }
+}

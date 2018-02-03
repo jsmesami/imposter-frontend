@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/imposter.css" rel="stylesheet" type="text/css">
-    <link rel="icon" href="https://clojurescript.org/images/cljs-logo-icon-32.png">
-  </head>
-  <body>
-    <div id="app">
-      <img class="app-loader" src="/assets/icons/app_loader.svg">
-    </div>
-    <script src="js/imposter.js"></script>
-    <script>mkp.imposter.core.main();</script>
-    <script defer src="components/svgxuse/svgxuse.min.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/imposter.css" rel="stylesheet" type="text/css">
+        <link rel="icon" href="https://clojurescript.org/images/cljs-logo-icon-32.png">
+    </head>
+    <body>
+        <div id="app">
+            <div class="loader"></div>
+            <img class="app-loader" src="/assets/icons/app_loader.svg">
+        </div>
+        <script src="js/imposter.js"></script>
+        <script>mkp.imposter.core.main();</script>
+        <script defer src="components/svgxuse/svgxuse.min.js"></script>
+    </body>
 </html>
