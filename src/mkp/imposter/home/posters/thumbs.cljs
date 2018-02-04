@@ -1,7 +1,8 @@
 (ns mkp.imposter.home.posters.thumbs
   (:require
     [mkp.imposter.components.basic :refer [icon]]
-    [mkp.imposter.utils.bem :refer [bem] :as bem]))
+    [mkp.imposter.utils.bem :refer [bem] :as bem]
+    [mkp.imposter.home.db :refer [posters-per-page]]))
 
 
 (def module-name "poster-thumb")
@@ -59,9 +60,19 @@
     [thumb-color-code poster]]])
 
 
+(defn thumb-placeholder
+  []
+  [:div.col-6.col-sm-4.col-md-3.mb-4
+   [:div.poster-placeholder]])
+
+
 (defn poster-thumbs
   [posters]
-  [:div.row
-   (for [poster (:list posters [])]
-     ^{:key (:id poster)}
-     [thumb poster])])
+  (let [posters-on-page (count (:list posters))]
+    [:div.row
+     (for [poster (:list posters)]
+       ^{:key (:id poster)}
+       [thumb poster])
+     (for [n (range (- posters-per-page posters-on-page))]
+       ^{:key (str "placeholder-" n)}
+       [thumb-placeholder])]))

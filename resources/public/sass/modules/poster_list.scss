@@ -1,4 +1,8 @@
+.poster-placeholder,
 .poster-thumb {
+  min-height: 326px;
+  width: 100%;
+  height: 100%;
   border-radius: $border-radius;
   background: $gray-200;
   overflow: hidden;
