@@ -1,0 +1,46 @@
+.poster-thumb {
+  border-radius: $border-radius;
+  background: $gray-200;
+  overflow: hidden;
+  &__thumb {
+    padding: 5px;
+    position: relative;
+    img {
+      border: 1px solid $border-color;
+      width: 100%;
+    }
+  }
+  &__button {
+    @extend .btn;
+    @extend .btn-outline-primary;
+    background: white;
+    width: 35px;
+    height: 35px;
+    padding: 6px 2px;
+    position: absolute;
+    right: 10px;
+    .icon {
+      width: 23px;
+      height: 23px;
+    }
+    &--download {
+      top: 10px;
+    }
+    &--edit {
+      top: 50px;
+    }
+  }
+  &__badge {
+    @extend .badge;
+    @extend .badge-primary;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+  &__title {
+    padding: 0 10px 5px;
+  }
+  &__color {
+    height: 5px;
+  }
+}

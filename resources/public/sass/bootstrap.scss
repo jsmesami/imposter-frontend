@@ -1,6 +1,6 @@
 @import "../components/bootstrap/scss/functions";
-@import "../components/bootstrap/scss/variables";
 @import "variables";
+@import "../components/bootstrap/scss/variables";
 @import "../components/bootstrap/scss/mixins";
 //@import "../components/bootstrap/scss/root";
 @import "../components/bootstrap/scss/reboot";
@@ -21,7 +21,7 @@
 //@import "../components/bootstrap/scss/card";
 //@import "../components/bootstrap/scss/breadcrumb";
 //@import "../components/bootstrap/scss/pagination";
-//@import "../components/bootstrap/scss/badge";
+@import "../components/bootstrap/scss/badge";
 //@import "../components/bootstrap/scss/jumbotron";
 @import "../components/bootstrap/scss/alert";
 //@import "../components/bootstrap/scss/progress";

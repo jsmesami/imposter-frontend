@@ -6,3 +6,9 @@
 @import "modules/icon";
 @import "modules/loader";
 @import "modules/navbar";
+@import "modules/poster_list";
+
+svg[role="img"] {
+  width: 100%;
+  height: 100%;
+}

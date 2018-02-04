@@ -8,7 +8,8 @@
   []
   (let [loading? @(subscribe [:net/loading?])
         f (atom {})]
-    [:div.poster-filter
-     [button "filtrovat"
-      :busy? loading?
-      :on-click #(dispatch [:home/posters-update-filter @f])]]))
+    [:div.poster-filter.row.mb-4
+     [:div.col-12
+      [button "filtrovat"
+       :busy? loading?
+       :on-click #(dispatch [:home/posters-update-filter @f])]]]))
