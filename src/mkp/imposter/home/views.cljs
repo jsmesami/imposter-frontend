@@ -9,6 +9,7 @@
 (defn button-create-poster
   []
   [button "Nový leták"
+   :icon-name "plus"
    :modifiers ["primary" "lg"]])
 
 

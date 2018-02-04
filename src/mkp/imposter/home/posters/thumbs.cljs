@@ -4,9 +4,12 @@
     [mkp.imposter.utils.bem :refer [bem] :as bem]))
 
 
+(def module-name "poster-thumb")
+
+
 (defn thumb-download-button
   [poster]
-  [:a {:class (bem "poster-thumb" "button" ["download"])
+  [:a {:class (bem module-name "button" ["download"])
        :title "stáhnout"
        :href (:print poster)
        :target "_blank"
@@ -17,7 +20,7 @@
 (defn thumb-edit-button
   [poster]
   (when (:editable poster)
-    [:a {:class (bem "poster-thumb" "button" ["edit"])
+    [:a {:class (bem module-name "button" ["edit"])
             :title "editovat"
             :href "#"}
         [icon "edit"]]))
@@ -25,25 +28,35 @@
 
 (defn thumb-badges
   [poster]
-  [:div {:class (bem/be "poster-thumb" "badges")}
-   [:div {:class (bem "poster-thumb" "badge" ["bureau"])}
+  [:div {:class (bem/be module-name "badges")}
+   [:div {:class (bem module-name "badge" ["bureau"])}
     (get-in poster [:bureau :abbrev])]])
+
+
+(defn thumb-title
+  [poster]
+  [:div {:class (bem/be module-name "title")}
+   (:title poster)])
+
+
+(defn thumb-color-code
+  [poster]
+  [:div
+   {:class (bem/be module-name "color")
+    :style {:background (get-in poster [:spec :color])}}])
 
 
 (defn thumb
   [poster]
   [:div.col-6.col-sm-4.col-md-3.mb-4
    [:div.poster-thumb
-    [:div {:class (bem/be "poster-thumb" "thumb")}
+    [:div {:class (bem/be module-name "thumb")}
      [thumb-download-button poster]
      [thumb-edit-button poster]
      [thumb-badges poster]
      [:img {:src (:thumb poster)}]]
-    [:div {:class (bem/be "poster-thumb" "title")}
-     (:title poster)]
-    [:div
-     {:class (bem/be "poster-thumb" "color")
-      :style {:background (get-in poster [:spec :color])}}]]])
+    [thumb-title poster]
+    [thumb-color-code poster]]])
 
 
 (defn poster-thumbs

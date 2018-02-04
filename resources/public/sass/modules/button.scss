@@ -1,8 +1,19 @@
 .btn {
+  .icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin: 0 0 0 5px;
+    bottom: -3px;
+  }
   &--primary {
     @extend .btn-primary;
   }
   &--lg {
     @extend .btn-lg;
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
   }
 }

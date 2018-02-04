@@ -11,5 +11,6 @@
     [:div.poster-filter.row.mb-4
      [:div.col-12
       [button "filtrovat"
+       :icon-name "search"
        :busy? loading?
        :on-click #(dispatch [:home/posters-update-filter @f])]]]))

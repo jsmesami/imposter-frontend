@@ -13,10 +13,12 @@
     [:div.poster-pagination.row.mb-4
      [:div.col-12
       [button "novější"
+       :icon-name "left"
        :on-click #(paginate (- offset posters-per-page))
        :enabled? (:prev? posters)
        :busy? loading?]
       [button "starší"
+       :icon-name "right"
        :on-click #(paginate (+ offset posters-per-page))
        :enabled? (:next? posters)
        :busy? loading?]]]))
