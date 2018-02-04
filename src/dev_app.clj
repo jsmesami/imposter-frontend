@@ -20,4 +20,4 @@
              ;; Django development server API:
              (wrap-proxy "/api" "http://localhost:8000/api")
              ;; Django media files
-             (wrap-proxy "/static" "http://localhost:8000/media")))
+             (wrap-proxy "/media" "http://localhost:8000/media")))
