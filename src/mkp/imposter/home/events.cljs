@@ -15,6 +15,8 @@
                   :error-msg "Nepodařilo se nahrát plakáty."
                   :transform (fn [response] (-> posters
                                                 (assoc :count (:count response))
+                                                (assoc :next? (string? (:next response)))
+                                                (assoc :prev? (string? (:previous response)))
                                                 (assoc :list (:results response))))]})))
 
 

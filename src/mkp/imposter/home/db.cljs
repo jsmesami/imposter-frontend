@@ -18,4 +18,6 @@
 (def HomeViewInitial
   {:posters {:filter PosterFilterInitial
              :count 0
+             :next? false
+             :prev? false
              :list []}})

@@ -9,16 +9,14 @@
   [posters]
   (let [loading? @(subscribe [:net/loading?])
         offset (get-in posters [:filter :offset])
-        can-go-bw? (pos? offset)
-        can-go-fw? (pos? (- (:count posters) offset))
         paginate #(dispatch [:home/posters-update-filter {:offset %}])]
     [:div.poster-pagination.row.mb-4
      [:div.col-12
       [button "novější"
        :on-click #(paginate (- offset posters-per-page))
-       :enabled? can-go-bw?
+       :enabled? (:prev? posters)
        :busy? loading?]
       [button "starší"
        :on-click #(paginate (+ offset posters-per-page))
-       :enabled? can-go-fw?
+       :enabled? (:next? posters)
        :busy? loading?]]]))
