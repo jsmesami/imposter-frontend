@@ -8,7 +8,6 @@
 (defn poster-list
   []
   (let [posters @(subscribe [:home/posters])]
-    (if (seq (:list posters))
-      [:div.poster-list
-       [poster-thumbs posters]
-       [pagination posters]])))
+    [:div.poster-list
+     [poster-thumbs posters]
+     [pagination posters]]))

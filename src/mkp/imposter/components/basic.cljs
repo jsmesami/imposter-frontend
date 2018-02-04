@@ -19,14 +19,16 @@
 
 
 (defn button
-  [label & {:keys [enabled? busy? on-click attrs modifiers icon-name]
+  [label & {:keys [enabled? busy? on-click attrs classes modifiers icon-name]
             :or {enabled? true
                  busy? false
                  attrs {}
+                 classes []
                  modifiers ["primary"]}}]
   (let [states [(when-not enabled? "disabled") (when busy? "busy")]
         default-attrs {:class (->> (bem/bm "btn" modifiers)
                                    (conj states)
+                                   (into classes)
                                    (join " "))
                        :on-click #(when (and (not busy?) enabled? on-click)
                                     (on-click %))}]
@@ -40,12 +42,13 @@
 
 
 (defn input
-  [& {:keys [enabled? type value on-change on-key-press attrs]
+  [& {:keys [enabled? type value on-change on-key-press attrs classes]
       :or {enabled? true
            type :text
-           attrs {}}}]
+           attrs {}
+           classes []}}]
   (let [default-attrs {:default-value value
-                       :class "form-control"
+                       :class (join " " classes)
                        :on-change #(when (and enabled? on-change)
                                      (on-change (-> % .-target .-value)))
                        :on-key-press #(when (and enabled? on-key-press)

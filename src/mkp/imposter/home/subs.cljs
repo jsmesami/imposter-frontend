@@ -6,4 +6,4 @@
 (reg-sub
   :home/posters
   (fn [db _]
-    (get-in db [:views :home :posters])))
+    (get-in db [:views :home :posters] [])))
