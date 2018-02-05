@@ -27,6 +27,13 @@
         [icon "edit"]]))
 
 
+(defn thumb-buttons
+  [poster]
+  [:div {:class (bem/be module-name "buttons")}
+   [thumb-download-button poster]
+   [thumb-edit-button poster]])
+
+
 (defn thumb-badges
   [poster]
   [:div {:class (bem/be module-name "badges")}
@@ -52,8 +59,7 @@
   [:div.col-6.col-sm-4.col-md-3.mb-4
    [:div.poster-thumb
     [:div {:class (bem/be module-name "thumb")}
-     [thumb-download-button poster]
-     [thumb-edit-button poster]
+     [thumb-buttons poster]
      [thumb-badges poster]
      [:img {:src (:thumb poster)}]]
     [thumb-title poster]
