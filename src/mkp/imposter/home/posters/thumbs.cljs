@@ -27,11 +27,21 @@
         [icon "edit"]]))
 
 
+(defn thumb-delete-button
+  [poster]
+  (when (:editable poster)
+    [:a {:class (bem module-name "button" ["delete"])
+            :title "smazat"
+            :href "#"}
+        [icon "trash"]]))
+
+
 (defn thumb-buttons
   [poster]
   [:div {:class (bem/be module-name "buttons")}
    [thumb-download-button poster]
-   [thumb-edit-button poster]])
+   [thumb-edit-button poster]
+   [thumb-delete-button poster]])
 
 
 (defn thumb-badges
