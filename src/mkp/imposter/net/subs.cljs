@@ -6,4 +6,4 @@
 (reg-sub
   :net/loading?
   (fn [db _]
-    (get-in db [:net :loading?])))
+    (pos? (get-in db [:net :loading-count]))))
