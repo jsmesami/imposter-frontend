@@ -1,7 +1,7 @@
 (ns mkp.imposter.home.events
   (:require
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
-    [mkp.imposter.home.db :refer [posters-per-page]]
+    [mkp.imposter.home.db :refer [posters-per-page PosterFilterInitial]]
     [mkp.imposter.utils.url :refer [m->qs]]))
 
 
@@ -25,4 +25,12 @@
   [trim-v]
   (fn [{:keys [db]} [f]]
     {:db (update-in db [:views :home :posters :filter] #(merge % f))
+     :dispatch [:home/posters-reload]}))
+
+
+(reg-event-fx
+  :home/posters-reset-filter
+  [trim-v]
+  (fn [{:keys [db]}]
+    {:db (assoc-in db [:views :home :posters :filter] PosterFilterInitial)
      :dispatch [:home/posters-reload]}))

@@ -47,7 +47,7 @@
            type :text
            attrs {}
            classes []}}]
-  (let [default-attrs {:default-value value
+  (let [default-attrs {:value value
                        :class (join " " classes)
                        :on-change #(when (and enabled? on-change)
                                      (on-change (-> % .-target .-value)))
