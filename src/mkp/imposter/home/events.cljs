@@ -10,7 +10,7 @@
   (fn [{:keys [db]}]
     (let [posters-path [:views :home :posters]
           posters (get-in db posters-path)
-          uri (str (get-in db [:api :poster]) (m->qs (:filter posters)))]
+          uri (str (get-in db [:resources :endpoints :poster]) (m->qs (:filter posters)))]
       {:dispatch [:net/fetch-resource uri posters-path
                   :error-msg "Nepodařilo se nahrát plakáty."
                   :transform (fn [response] (-> posters

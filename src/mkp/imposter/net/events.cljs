@@ -12,7 +12,8 @@
   [trim-v]
   (fn [{:keys [db]} [uri save-path & {:keys [error-msg transform dispatch-after]
                                       :or   {error-msg "Spojení se nezdařilo."
-                                             transform (fn [src] src)}}]]
+                                             transform (fn [src] src)
+                                             dispatch-after []}}]]
     {:db (update-in db [:net :loading-count] inc)
      :http-xhrio {:method          :get
                   :uri             uri
@@ -27,7 +28,7 @@
   :net/success
   [trim-v]
   (fn [{:keys [db]} [save-path transform dispatch-after response]]
-    {:dispatch-n [dispatch-after]
+    {:dispatch-n dispatch-after
      :db (-> db
              (update-in [:net :loading-count] #(if (pos? %) (dec %) 0))
              (assoc-in save-path (-> response

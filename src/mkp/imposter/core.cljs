@@ -7,7 +7,8 @@
     [mkp.imposter.alert.core]
     [mkp.imposter.generator.core]
     [mkp.imposter.home.core]
-    [mkp.imposter.net.core]))
+    [mkp.imposter.net.core]
+    [mkp.imposter.resources.core]))
 
 
 (defn render!
