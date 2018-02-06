@@ -57,3 +57,22 @@
                        :type type}]
     [:div
      [:input (merge default-attrs attrs)]]))
+
+
+(defn select
+  [options & {:keys [enabled? value on-change attrs classes]
+              :or {enabled? true
+                   attrs {}
+                   classes []}}]
+  (let [default-attrs {:value (if (nil? value) "" value)
+                       :class (join " " classes)
+                       :on-change #(when (and enabled? on-change)
+                                     (on-change (-> % .-target .-value)))
+                       :disabled (when-not enabled? "disabled")}]
+    [:div
+     [:select (merge default-attrs attrs)
+      (for [[text value] options]
+        [:option
+         {:key value
+          :value value}
+         text])]]))

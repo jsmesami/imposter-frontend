@@ -3,7 +3,7 @@
     [clojure.string :refer [join]]
     [reagent.core :as reagent]
     [re-frame.core :refer [dispatch subscribe]]
-    [mkp.imposter.components.basic :refer [button input]]))
+    [mkp.imposter.components.basic :refer [button input select]]))
 
 
 (defn filter-since
@@ -28,6 +28,37 @@
      :classes ["form-control"]
      :enabled? (not loading?)
      :on-change #(swap! f* assoc :until %)]]])
+
+
+(defn filter-bureau
+  [f* loading?]
+  (let [bureau-res @(subscribe [:resources/bureau])
+        options (->> bureau-res
+                     (map #(vector (:name %) (:id %)))
+                     (cons ["-" ""]))]
+    [:div.col-auto
+     [:label "Pobočka:"
+      [select options
+       :value (:bureau @f*)
+       :classes ["form-control"]
+       :enabled? (not loading?)
+       :on-change #(swap! f* assoc :bureau %)]]]))
+
+
+(defn filter-spec
+  [f* loading?]
+  (let [spec-res @(subscribe [:resources/spec])
+        options (->> spec-res
+                     (map #(vector (:name %) (:id %)))
+                     (cons ["-" ""]))]
+    [:div.col-auto
+     [:label "Šablona:"
+      [select options
+       :value (:spec @f*)
+       :classes ["form-control"]
+       :enabled? (not loading?)
+       :on-change #(swap! f* assoc :spec %)]]]))
+
 
 
 (defn clear-button
@@ -60,7 +91,7 @@
         f (reagent/atom {})]
     (fn []
       [:div.poster-filter.form-row.align-items-center.mb-4
-       [filter-since f loading?]
-       [filter-until f loading?]
-       [filter-button f loading?]
-       [clear-button f loading?]])))
+        (for [[i fun] (map-indexed vector [filter-since filter-until filter-bureau
+                                           filter-spec filter-button clear-button])]
+          ^{:key i}
+          [fun f loading?])])))
