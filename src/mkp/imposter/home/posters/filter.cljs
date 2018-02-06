@@ -87,11 +87,12 @@
 
 (defn poster-filter
   []
-  (let [loading? @(subscribe [:net/loading?])
-        f (reagent/atom {})]
+  (let [f* (reagent/atom {})]
     (fn []
-      [:div.poster-filter.form-row.align-items-center.mb-4
-        (for [[i fun] (map-indexed vector [filter-since filter-until filter-bureau
-                                           filter-spec filter-button clear-button])]
-          ^{:key i}
-          [fun f loading?])])))
+      (let [loading? @(subscribe [:net/loading?])]
+        [:div.poster-filter.form-row.align-items-center.mb-4
+          (for [[i fun] (map-indexed vector [filter-since filter-until
+                                             filter-bureau filter-spec
+                                             filter-button clear-button])]
+            ^{:key i}
+            [fun f* loading?])]))))

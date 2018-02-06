@@ -15,10 +15,10 @@
       [button "novější"
        :icon-name "left"
        :on-click #(paginate (- offset posters-per-page))
-       :enabled? (:prev? posters)
+       :enabled? (and (not loading?) (:prev? posters))
        :busy? loading?]
       [button "starší"
        :icon-name "right"
        :on-click #(paginate (+ offset posters-per-page))
-       :enabled? (:next? posters)
+       :enabled? (and (not loading?) (:next? posters))
        :busy? loading?]]]))

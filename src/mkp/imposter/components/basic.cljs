@@ -12,9 +12,13 @@
 
 
 (defn icon
-  [id & modifiers]
+  [id & {:keys [classes modifiers]
+         :or {classes []}}]
   [:span
-   {:class (bem/bm "icon" (into [id] modifiers))}
+   {:class (->> (into [id] modifiers)
+                (bem/bm "icon")
+                (conj classes)
+                (join " "))}
    [svg id]])
 
 
@@ -37,7 +41,7 @@
      label
 
      (if busy?
-       [icon "spinner" "spinning"]
+       [icon "spinner" :classes ["spinning"]]
        (when icon-name [icon icon-name]))]))
 
 

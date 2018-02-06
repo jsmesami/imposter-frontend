@@ -8,7 +8,7 @@
     float: left;
   }
 
-  .spinning {
+  &.spinning {
     @keyframes spin {
       from {
         transform: rotate(0deg);
