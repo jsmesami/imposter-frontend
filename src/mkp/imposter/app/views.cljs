@@ -1,14 +1,8 @@
 (ns mkp.imposter.app.views
   (:require
-    [re-frame.core :refer [subscribe]]
     [mkp.imposter.alert.views :refer [alerts]]
-    [mkp.imposter.app.db :refer [view-id->view]]
-    [mkp.imposter.components.loader :refer [loader]]))
-
-
-(defn current-view
-  []
-  (view-id->view @(subscribe [:app/view])))
+    [mkp.imposter.components.loader :refer [loader]]
+    [mkp.imposter.views.routing :refer [current-view]]))
 
 
 (defn app

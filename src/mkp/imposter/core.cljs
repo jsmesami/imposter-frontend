@@ -2,13 +2,14 @@
   (:require
     [reagent.core :as reagent]
     [re-frame.core :as reframe]
+    [mkp.imposter.alert.core]
     [mkp.imposter.app.core]
     [mkp.imposter.app.views :refer [app]]
-    [mkp.imposter.alert.core]
     [mkp.imposter.generator.core]
     [mkp.imposter.net.core]
     [mkp.imposter.posters.core]
-    [mkp.imposter.resources.core]))
+    [mkp.imposter.resources.core]
+    [mkp.imposter.views.core]))
 
 
 (defn render!
