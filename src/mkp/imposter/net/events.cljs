@@ -4,18 +4,18 @@
     [day8.re-frame.http-fx]
     [reagent.format :refer [format]]
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
+    [mkp.imposter.net.interceptors :refer [inc-loading-count dec-loading-count]]
     [mkp.imposter.settings :refer [default-request-timeout]]))
 
 
 (reg-event-fx
   :net/fetch-resource
-  [trim-v]
-  (fn [{:keys [db]} [uri save-path & {:keys [error-msg transform dispatch-after]
-                                      :or   {error-msg "Spojení se nezdařilo."
-                                             transform (fn [src] src)
-                                             dispatch-after []}}]]
-    {:db (update-in db [:net :loading-count] inc)
-     :http-xhrio {:method          :get
+  [trim-v inc-loading-count]
+  (fn [_ [uri save-path & {:keys [error-msg transform dispatch-after]
+                           :or   {error-msg "Spojení se nezdařilo."
+                                  transform (fn [src] src)
+                                  dispatch-after []}}]]
+    {:http-xhrio {:method          :get
                   :uri             uri
                   :timeout         default-request-timeout
                   :format          (ajax/json-request-format)
@@ -26,20 +26,17 @@
 
 (reg-event-fx
   :net/success
-  [trim-v]
+  [trim-v dec-loading-count]
   (fn [{:keys [db]} [save-path transform dispatch-after response]]
     {:dispatch-n dispatch-after
-     :db (-> db
-             (update-in [:net :loading-count] #(if (pos? %) (dec %) 0))
-             (assoc-in save-path (-> response
-                                     js->clj
-                                     transform)))}))
+     :db (assoc-in db save-path (-> response
+                                    js->clj
+                                    transform))}))
 
 
 (reg-event-fx
   :net/failure
-  [trim-v]
-  (fn [{:keys [db]} [message response]]
-    {:db (update-in db [:net :loading-count] #(if (pos? %) (dec %) 0))
-     :app/log [(str "Request error: " (:debug-message response)) :error]
+  [trim-v dec-loading-count]
+  (fn [_ [message response]]
+    {:app/log [(str "Request error: " (:debug-message response)) :error]
      :dispatch [:alert/add-message :error message]}))
