@@ -1,7 +1,10 @@
 (ns mkp.imposter.posters.events
   (:require
+    [ajax.core :as ajax]
+    [reagent.format :refer [format]]
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
     [mkp.imposter.posters.db :refer [posters-per-page PosterFilterInitial]]
+    [mkp.imposter.settings :refer [default-request-timeout]]
     [mkp.imposter.utils.url :refer [m->qs]]))
 
 
@@ -33,3 +36,16 @@
   (fn [{:keys [db]}]
     {:db (assoc-in db [:posters :filter] PosterFilterInitial)
      :dispatch [:posters/reload]}))
+
+
+(reg-event-fx
+  :posters/delete
+  [trim-v]
+  (fn [{:keys [db]} [id]]
+    {:http-xhrio {:method          :delete
+                  :uri             (format "%s%s/" (get-in db [:resources :endpoints :poster]) id)
+                  :timeout         default-request-timeout
+                  :format          (ajax/json-request-format)
+                  :response-format (ajax/json-response-format {:keywords? true})
+                  :on-success      [:posters/reload]
+                  :on-failure      [:net/failure "Nepodařilo se smazat plakát."]}}))

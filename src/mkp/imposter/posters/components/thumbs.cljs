@@ -1,5 +1,6 @@
 (ns mkp.imposter.posters.components.thumbs
   (:require
+    [re-frame.core :refer [dispatch]]
     [mkp.imposter.components.basic :refer [icon]]
     [mkp.imposter.posters.db :refer [posters-per-page]]
     [mkp.imposter.utils.bem :refer [bem] :as bem]))
@@ -21,19 +22,25 @@
 (defn thumb-edit-button
   [poster]
   (when (:editable poster)
-    [:a {:class (bem module-name "button" ["edit"])
-            :title "editovat"
-            :href "#"}
-        [icon "edit"]]))
+    (let [dispatcher (fn [e] (do (dispatch [:posters/edit (:id poster)])
+                                 (.preventDefault e)))]
+      [:a {:class (bem module-name "button" ["edit"])
+           :title "editovat"
+           :href "#"
+           :on-click dispatcher}
+          [icon "edit"]])))
 
 
 (defn thumb-delete-button
   [poster]
   (when (:editable poster)
-    [:a {:class (bem module-name "button" ["delete"])
-            :title "smazat"
-            :href "#"}
-        [icon "trash"]]))
+    (let [dispatcher (fn [e] (do (dispatch [:posters/delete (:id poster)])
+                                 (.preventDefault e)))]
+      [:a {:class (bem module-name "button" ["delete"])
+           :title "smazat"
+           :href "#"
+           :on-click dispatcher}
+          [icon "trash"]])))
 
 
 (defn thumb-buttons
