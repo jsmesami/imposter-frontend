@@ -8,7 +8,7 @@
 
 (defn current-view
   []
-  (view-id->view @(subscribe [:app/current-view])))
+  (view-id->view @(subscribe [:app/view])))
 
 
 (defn app

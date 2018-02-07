@@ -1,8 +1,8 @@
-(ns mkp.imposter.home.posters.thumbs
+(ns mkp.imposter.posters.components.thumbs
   (:require
     [mkp.imposter.components.basic :refer [icon]]
-    [mkp.imposter.utils.bem :refer [bem] :as bem]
-    [mkp.imposter.home.db :refer [posters-per-page]]))
+    [mkp.imposter.posters.db :refer [posters-per-page]]
+    [mkp.imposter.utils.bem :refer [bem] :as bem]))
 
 
 (def module-name "poster-thumb")

@@ -1,15 +1,15 @@
-(ns mkp.imposter.home.posters.pagination
+(ns mkp.imposter.posters.components.pagination
   (:require
     [re-frame.core :refer [subscribe dispatch]]
     [mkp.imposter.components.basic :refer [button]]
-    [mkp.imposter.home.db :refer [posters-per-page]]))
+    [mkp.imposter.posters.db :refer [posters-per-page]]))
 
 
 (defn pagination
   [posters]
   (let [loading? @(subscribe [:net/loading?])
         offset (get-in posters [:filter :offset])
-        paginate #(dispatch [:home/posters-update-filter {:offset %}])]
+        paginate #(dispatch [:posters/update-filter {:offset %}])]
     [:div.poster-pagination.row.mb-4
      [:div.col-12
       [button "novější"

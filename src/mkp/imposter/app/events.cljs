@@ -7,5 +7,5 @@
 (reg-event-fx
   :app/initialize
   (fn [_]
-    {:db AppInitial
-     :dispatch [:resources/fetch-resources]}))
+    {:db       AppInitial
+     :dispatch [:resources/fetch-data]}))

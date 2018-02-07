@@ -5,17 +5,17 @@
 
 
 (reg-event-fx
-  :resources/fetch-resources
+  :resources/fetch-data
   [trim-v]
   (fn [_]
     {:dispatch [:net/fetch-resource api-uri [:resources :endpoints]
-                :dispatch-after [[:resources/fetch-bureau-resource]
-                                 [:resources/fetch-spec-resource]
-                                 [:home/posters-reload]]]}))
+                :dispatch-after [[:resources/fetch-bureau-data]
+                                 [:resources/fetch-spec-data]
+                                 [:posters/reload]]]}))
 
 
 (reg-event-fx
-  :resources/fetch-bureau-resource
+  :resources/fetch-bureau-data
   [trim-v]
   (fn [{:keys [db]}]
     {:dispatch [:net/fetch-resource (get-in db [:resources :endpoints :bureau]) [:resources :bureau]
@@ -23,7 +23,7 @@
 
 
 (reg-event-fx
-  :resources/fetch-spec-resource
+  :resources/fetch-spec-data
   [trim-v]
   (fn [{:keys [db]}]
     {:dispatch [:net/fetch-resource (get-in db [:resources :endpoints :spec]) [:resources :spec]

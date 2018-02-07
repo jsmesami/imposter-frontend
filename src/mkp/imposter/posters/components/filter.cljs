@@ -1,4 +1,4 @@
-(ns mkp.imposter.home.posters.filter
+(ns mkp.imposter.posters.components.filter
   (:require
     [clojure.string :refer [join]]
     [reagent.core :as reagent]
@@ -70,7 +70,7 @@
        :classes ["form-control"]
        :enabled? (not loading?)
        :on-click #(do (reset! f* {})
-                      (dispatch [:home/posters-reset-filter]))]]]))
+                      (dispatch [:posters/reset-filter]))]]]))
 
 
 (defn filter-button
@@ -82,7 +82,7 @@
      :classes ["form-control"]
      :enabled? (not (or loading? (empty? @f*)))
      :busy? loading?
-     :on-click #(dispatch [:home/posters-update-filter @f*])]]])
+     :on-click #(dispatch [:posters/update-filter @f*])]]])
 
 
 (defn poster-filter

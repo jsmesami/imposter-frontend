@@ -6,8 +6,8 @@
     [mkp.imposter.app.views :refer [app]]
     [mkp.imposter.alert.core]
     [mkp.imposter.generator.core]
-    [mkp.imposter.home.core]
     [mkp.imposter.net.core]
+    [mkp.imposter.posters.core]
     [mkp.imposter.resources.core]))
 
 

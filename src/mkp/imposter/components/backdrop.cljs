@@ -1,6 +1,5 @@
 (ns mkp.imposter.components.backdrop
   (:require
-    [clojure.string :as string]
     [goog.dom.classes :as classes]
     [reagent.core :as reagent]))
 

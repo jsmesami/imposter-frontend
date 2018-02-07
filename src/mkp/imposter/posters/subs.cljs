@@ -1,9 +1,9 @@
-(ns mkp.imposter.app.subs
+(ns mkp.imposter.posters.subs
   (:require
     [re-frame.core :refer [reg-sub]]))
 
 
 (reg-sub
-  :app/view
+  :posters/list
   (fn [db _]
-    (:view db)))
+    (:posters db [])))
