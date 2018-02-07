@@ -15,4 +15,7 @@
   &--error {
     @extend .alert-danger;
   }
+  &--success {
+    @extend .alert-success;
+  }
 }

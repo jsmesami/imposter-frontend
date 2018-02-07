@@ -8,23 +8,27 @@
   :resources/fetch-data
   [trim-v]
   (fn [_]
-    {:dispatch [:net/fetch-resource api-uri [:resources :endpoints]
-                :dispatch-after [[:resources/fetch-bureau-data]
-                                 [:resources/fetch-spec-data]
-                                 [:posters/reload]]]}))
+    {:dispatch [:net/xhr :get api-uri
+                :success-fx (fn [db response]
+                              {:db (assoc-in db [:resources :endpoints] response)
+                               :dispatch-n [[:resources/fetch-bureau-data]
+                                            [:resources/fetch-spec-data]
+                                            [:posters/reload]]})]}))
 
 
 (reg-event-fx
   :resources/fetch-bureau-data
   [trim-v]
   (fn [{:keys [db]}]
-    {:dispatch [:net/fetch-resource (get-in db [:resources :endpoints :bureau]) [:resources :bureau]
-                :error-msg "Nepodařilo se nahrát pobočky."]}))
+    {:dispatch [:net/xhr :get (get-in db [:resources :endpoints :bureau])
+                :success-fx (fn [db response]
+                              {:db (assoc-in db [:resources :bureau] response)})]}))
 
 
 (reg-event-fx
   :resources/fetch-spec-data
   [trim-v]
   (fn [{:keys [db]}]
-    {:dispatch [:net/fetch-resource (get-in db [:resources :endpoints :spec]) [:resources :spec]
-                :error-msg "Nepodařilo se nahrát šablony."]}))
+    {:dispatch [:net/xhr :get (get-in db [:resources :endpoints :spec])
+                :success-fx (fn [db response]
+                              {:db (assoc-in db [:resources :spec] response)})]}))

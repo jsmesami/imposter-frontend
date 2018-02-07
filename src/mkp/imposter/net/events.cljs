@@ -2,41 +2,48 @@
   (:require
     [ajax.core :as ajax]
     [day8.re-frame.http-fx]
-    [reagent.format :refer [format]]
-    [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
+    [re-frame.core :refer [reg-event-fx trim-v]]
     [mkp.imposter.net.interceptors :refer [inc-loading-count dec-loading-count]]
     [mkp.imposter.settings :refer [default-request-timeout]]))
 
 
+(defn default-success-fx
+  [db _]
+  {:db db})
+
+
+(defn default-failure-fx
+  [db response]
+  {:db db
+   :app/log [(str "Request error: " (:debug-message response)) :error]
+   :dispatch [:alert/add-message :error "Spojení se nezdařilo."]})
+
+
 (reg-event-fx
-  :net/fetch-resource
+  :net/xhr
   [trim-v inc-loading-count]
-  (fn [_ [uri save-path & {:keys [error-msg transform dispatch-after]
-                           :or   {error-msg "Spojení se nezdařilo."
-                                  transform (fn [src] src)
-                                  dispatch-after []}}]]
-    {:http-xhrio {:method          :get
+  (fn [_ [method uri & {:keys [success-fx failure-fx timeout]
+                        :or {success-fx default-success-fx
+                             failure-fx default-failure-fx
+                             timeout default-request-timeout}}]]
+    {:http-xhrio {:method          method
                   :uri             uri
-                  :timeout         default-request-timeout
+                  :timeout         timeout
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})
-                  :on-success      [:net/success save-path transform dispatch-after]
-                  :on-failure      [:net/failure error-msg]}}))
+                  :on-success      [:net/success success-fx]
+                  :on-failure      [:net/failure failure-fx]}}))
 
 
 (reg-event-fx
   :net/success
   [trim-v dec-loading-count]
-  (fn [{:keys [db]} [save-path transform dispatch-after response]]
-    {:dispatch-n dispatch-after
-     :db (assoc-in db save-path (-> response
-                                    js->clj
-                                    transform))}))
+  (fn [{:keys [db]} [success-fx response]]
+    (success-fx db (js->clj response))))
 
 
 (reg-event-fx
   :net/failure
   [trim-v dec-loading-count]
-  (fn [_ [message response]]
-    {:app/log [(str "Request error: " (:debug-message response)) :error]
-     :dispatch [:alert/add-message :error message]}))
+  (fn [{:keys [db]} [failure-fx response]]
+    (failure-fx db (js->clj response))))

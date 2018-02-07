@@ -1,10 +1,7 @@
 (ns mkp.imposter.posters.events
   (:require
-    [ajax.core :as ajax]
-    [reagent.format :refer [format]]
-    [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
-    [mkp.imposter.posters.db :refer [posters-per-page PosterFilterInitial]]
-    [mkp.imposter.settings :refer [default-request-timeout]]
+    [re-frame.core :refer [reg-event-fx trim-v]]
+    [mkp.imposter.posters.db :refer [PosterFilterInitial]]
     [mkp.imposter.utils.url :refer [m->qs]]))
 
 
@@ -13,14 +10,13 @@
   (fn [{:keys [db]}]
     (let [posters (:posters db)
           uri (str (get-in db [:resources :endpoints :poster]) (m->qs (:filter posters)))]
-      {:dispatch [:net/fetch-resource uri [:posters]
-                  :error-msg "Nepodařilo se nahrát plakáty."
-                  :transform (fn [response] (-> posters
-                                                (assoc :count (:count response))
-                                                (assoc :next? (string? (:next response)))
-                                                (assoc :prev? (string? (:previous response)))
-                                                (assoc :list (:results response))))]})))
-
+      {:dispatch [:net/xhr :get uri
+                  :success-fx (fn [db response]
+                                {:db (-> db
+                                         (assoc-in [:posters :count] (:count response))
+                                         (assoc-in [:posters :next?] (string? (:next response)))
+                                         (assoc-in [:posters :prev?] (string? (:previous response)))
+                                         (assoc-in [:posters :list] (:results response)))})]})))
 
 (reg-event-fx
   :posters/update-filter
@@ -42,10 +38,6 @@
   :posters/delete
   [trim-v]
   (fn [{:keys [db]} [id]]
-    {:http-xhrio {:method          :delete
-                  :uri             (format "%s%s/" (get-in db [:resources :endpoints :poster]) id)
-                  :timeout         default-request-timeout
-                  :format          (ajax/json-request-format)
-                  :response-format (ajax/json-response-format {:keywords? true})
-                  :on-success      [:posters/reload]
-                  :on-failure      [:net/failure "Nepodařilo se smazat plakát."]}}))
+    {:dispatch [:net/xhr :delete (str (get-in db [:resources :endpoints :poster]) id "/")
+                :success-fx #(hash-map :dispatch-n [[:alert/add-message :success "Plakát byl úspěšně smazán"]
+                                                    [:posters/reload]])]}))
