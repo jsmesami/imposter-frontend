@@ -2,11 +2,9 @@
   (:require
     [doo.runner :refer-macros [doo-tests]]
     [tests.test-alert]
-    [tests.test-home]
-    [tests.test-net]))
+    [tests.test-utils]))
 
 
 (doo-tests
   'tests.test-alert
-  'tests.test-net
-  'tests.test-home)
+  'tests.test-utils)

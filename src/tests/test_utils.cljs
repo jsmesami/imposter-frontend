@@ -1,4 +1,4 @@
-(ns tests.test-home
+(ns tests.test-utils
   (:require
     [cljs.test :refer-macros [deftest testing is]]
     [mkp.imposter.utils.url :refer [m->qs]]))
