@@ -39,5 +39,5 @@
   [trim-v]
   (fn [{:keys [db]} [id]]
     {:dispatch [:net/xhr :delete (str (get-in db [:resources :endpoints :poster]) id "/")
-                :success-fx #(hash-map :dispatch-n [[:alert/add-message :success "Plakát byl úspěšně smazán"]
+                :success-fx #(hash-map :dispatch-n [[:alert/add-message :success "Plakát byl úspěšně smazán" 5000]
                                                     [:posters/reload]])]}))
