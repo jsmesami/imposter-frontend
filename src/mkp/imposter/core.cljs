@@ -6,6 +6,7 @@
     [mkp.imposter.app.core]
     [mkp.imposter.app.views :refer [app]]
     [mkp.imposter.generator.core]
+    [mkp.imposter.modals.core]
     [mkp.imposter.net.core]
     [mkp.imposter.posters.core]
     [mkp.imposter.resources.core]

@@ -7,4 +7,5 @@
 (def AppInitial
   {:net  NetInitial
    :posters PosterListInitial
-   :view :home})
+   :view :home
+   :modal nil})

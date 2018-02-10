@@ -1,6 +1,6 @@
 (ns mkp.imposter.views.home
   (:require
-    [re-frame.core :refer [subscribe]]
+    [re-frame.core :refer [dispatch subscribe]]
     [mkp.imposter.components.basic :refer [button]]
     [mkp.imposter.components.navbar :refer [navbar]]
     [mkp.imposter.posters.views :refer [poster-list]]))
@@ -12,7 +12,8 @@
     [button "Nový leták"
      :icon-name "plus"
      :enabled? (not loading?)
-     :modifiers ["primary" "lg"]]))
+     :modifiers ["primary" "lg"]
+     :on-click #(dispatch [:posters/create])]))
 
 
 (defn home

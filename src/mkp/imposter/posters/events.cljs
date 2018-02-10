@@ -2,6 +2,7 @@
   (:require
     [re-frame.core :refer [reg-event-fx trim-v]]
     [mkp.imposter.posters.db :refer [PosterFilterInitial]]
+    [mkp.imposter.resources.core :refer [poster-resource]]
     [mkp.imposter.utils.url :refer [m->qs]]))
 
 
@@ -37,7 +38,21 @@
 (reg-event-fx
   :posters/delete
   [trim-v]
-  (fn [{:keys [db]} [id]]
-    {:dispatch [:net/xhr :delete (str (get-in db [:resources :endpoints :poster]) id "/")
+  (fn [{:keys [db]} [poster-id]]
+    {:dispatch [:net/xhr :delete (poster-resource db poster-id)
                 :success-fx #(hash-map :dispatch-n [[:alert/add-message :success "Plakát byl úspěšně smazán" 5000]
                                                     [:posters/reload]])]}))
+
+
+(reg-event-fx
+  :posters/edit
+  [trim-v]
+  (fn [_ [poster-id]]
+    {:dispatch [:generator/prepare poster-id]}))
+
+
+(reg-event-fx
+  :posters/create
+  [trim-v]
+  (fn [_]
+    {:dispatch [:generator/prepare]}))
