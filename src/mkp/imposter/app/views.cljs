@@ -1,15 +1,18 @@
 (ns mkp.imposter.app.views
   (:require
+    [re-frame.core :refer [subscribe]]
     [mkp.imposter.alert.views :refer [alerts]]
-    [mkp.imposter.components.loader :refer [loader]]
-    [mkp.imposter.modals.core :refer [current-modal]]
-    [mkp.imposter.views.core :refer [current-view]]))
+    [mkp.imposter.components.loader :refer [loader]]))
 
 
 (defn app
   []
-  [:div
-   [loader]
-   [alerts]
-   [current-view]
-   [current-modal]])
+  (let [view @(subscribe [:views/current-view])
+        modal @(subscribe [:modals/current-modal])]
+    [:div
+     [loader]
+     [alerts]
+     (when view
+       [view])
+     (when modal
+       [modal])]))

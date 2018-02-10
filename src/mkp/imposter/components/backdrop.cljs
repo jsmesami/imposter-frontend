@@ -17,7 +17,7 @@
      #(classes/remove (-> js/window .-document .-body) "with-backdrop")
 
      :reagent-render
-     (fn render-backdrop [& content]
+     (fn [& content]
        [:div
         [:div.backdrop]
         (into [:div.backdrop__content] content)])}))

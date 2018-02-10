@@ -6,12 +6,17 @@ body.with-backdrop {
   }
 }
 
-.backdrop {
+.backdrop,
+.backdrop__content {
   position: absolute;
   top: $loader-height;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.backdrop {
+  top: $loader-height;
   background: white;
   opacity: 0.5;
 }
