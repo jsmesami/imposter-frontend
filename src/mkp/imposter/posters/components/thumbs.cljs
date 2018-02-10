@@ -1,9 +1,9 @@
 (ns mkp.imposter.posters.components.thumbs
   (:require
-    [re-frame.core :refer [dispatch]]
     [mkp.imposter.components.basic :refer [icon]]
     [mkp.imposter.posters.db :refer [posters-per-page]]
-    [mkp.imposter.utils.bem :refer [bem] :as bem]))
+    [mkp.imposter.utils.bem :refer [bem] :as bem]
+    [mkp.imposter.utils.events :refer [click-dispatcher]]))
 
 
 (def module-name "poster-thumb")
@@ -22,25 +22,21 @@
 (defn thumb-edit-button
   [poster]
   (when (:editable poster)
-    (let [dispatcher (fn [e] (do (dispatch [:posters/edit (:id poster)])
-                                 (.preventDefault e)))]
-      [:a {:class (bem module-name "button" ["edit"])
-           :title "editovat"
-           :href "#"
-           :on-click dispatcher}
-          [icon "edit"]])))
+    [:a {:class (bem module-name "button" ["edit"])
+         :title "editovat"
+         :href "#"
+         :on-click (click-dispatcher [:posters/edit (:id poster)])}
+        [icon "edit"]]))
 
 
 (defn thumb-delete-button
   [poster]
   (when (:editable poster)
-    (let [dispatcher (fn [e] (do (dispatch [:posters/delete (:id poster)])
-                                 (.preventDefault e)))]
-      [:a {:class (bem module-name "button" ["delete"])
-           :title "smazat"
-           :href "#"
-           :on-click dispatcher}
-          [icon "trash"]])))
+    [:a {:class (bem module-name "button" ["delete"])
+         :title "smazat"
+         :href "#"
+         :on-click (click-dispatcher [:posters/delete (:id poster)])}
+        [icon "trash"]]))
 
 
 (defn thumb-buttons
@@ -66,9 +62,8 @@
 
 (defn thumb-color-code
   [poster]
-  [:div
-   {:class (bem/be module-name "color")
-    :style {:background (get-in poster [:spec :color])}}])
+  [:div.color-stripe
+   {:style {:background (get-in poster [:spec :color])}}])
 
 
 (defn thumb

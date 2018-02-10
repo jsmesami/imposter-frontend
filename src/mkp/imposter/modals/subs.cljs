@@ -1,7 +1,7 @@
 (ns mkp.imposter.modals.subs
   (:require
     [re-frame.core :refer [reg-sub]]
-    [mkp.imposter.modals.views :refer [select-spec]]))
+    [mkp.imposter.modals.views.spec-modal :refer [select-spec]]))
 
 
 (def modal-id->modal

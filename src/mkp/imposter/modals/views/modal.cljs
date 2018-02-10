@@ -1,23 +1,18 @@
-(ns mkp.imposter.modals.views
+(ns mkp.imposter.modals.views.modal
   (:require
     [goog.events :refer [listen unlisten]]
     [goog.events.EventType :refer [KEYDOWN]]
     [reagent.core :as reagent]
-    [re-frame.core :refer [dispatch]]
     [mkp.imposter.components.basic :refer [icon]]
     [mkp.imposter.components.backdrop :refer [backdrop]]
     [mkp.imposter.utils.bem :as bem]
-    [mkp.imposter.utils.events :refer [esc?]]))
+    [mkp.imposter.utils.events :refer [click-dispatcher esc?]]))
 
 
 (def module-name "modal")
 
 
-(defn dismiss!
-  [e]
-  (do (dispatch [:modals/clear])
-      (.preventDefault e)
-      false))
+(def dismiss! (click-dispatcher [:modals/clear]))
 
 
 (defn dismiss-button
@@ -30,8 +25,8 @@
 
 
 (defn modal
-  [& {:keys [dismissable?]
-      :or {dismissable? true}}]
+  [content & {:keys [dismissable?]
+              :or {dismissable? true}}]
   (let [handle-esc (fn [e] (if (esc? e) (dismiss! e) true))]
     (reagent/create-class
       {:display-name
@@ -51,11 +46,8 @@
        (fn [& {:keys [dismissable?]
                :or {dismissable? true}}]
          [backdrop
+          [:div {:class module-name}
+           [:div.container
+            content]]
           (when dismissable?
-            [dismiss-button])
-          [:div {:class module-name}]])})))
-
-
-(defn select-spec
-  []
-  [modal])
+            [dismiss-button])])})))
