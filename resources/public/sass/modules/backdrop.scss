@@ -1,4 +1,17 @@
 // Suppress scroll on body
 body.with-backdrop {
-  overflow: hidden
+  overflow: hidden;
+  .view {
+    filter: brightness(2) grayscale(20%) blur(5px);
+  }
+}
+
+.backdrop {
+  position: absolute;
+  top: $loader-height;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  opacity: 0.5;
 }

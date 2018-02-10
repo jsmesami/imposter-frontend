@@ -18,7 +18,7 @@
 
 (defn home
   []
-  [:div#home
+  [:div#home.view
    [navbar
     [button-create-poster]]
    [poster-list]])

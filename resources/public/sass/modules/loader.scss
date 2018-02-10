@@ -1,5 +1,5 @@
 .loader {
-  height: 10px;
+  height: $loader-height;
   background: linear-gradient(-45deg, #c41100, #d59700, #c41100);
   background-size: 400% 400%;
   &--loading {

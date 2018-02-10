@@ -6,7 +6,7 @@
 
 (defn edit
   []
-  [:div#edit
+  [:div#edit.view
    [navbar
     [:h1 "Generátor"]]
    [generator]])
