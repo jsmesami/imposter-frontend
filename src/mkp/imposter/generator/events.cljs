@@ -2,7 +2,7 @@
   (:require
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
     [mkp.imposter.resources.core :refer [poster-resource]]
-    [mkp.imposter.generator.form :refer [data->form-fields]]))
+    [mkp.imposter.generator.form :refer [poster->form spec->form]]))
 
 
 (reg-event-fx
@@ -19,9 +19,17 @@
 (reg-event-db
   :generator/edit
   [trim-v]
-  (fn [db [mode data]]
-    (-> db
-        (assoc-in [:generator :fields] (data->form-fields data))
-        (assoc-in [:generator :mode] mode)
-        (assoc :modal nil)
-        (assoc :view :edit))))
+  (fn [db [action data]]
+    (let [data->form (get {:update poster->form, :create spec->form} action)]
+      (-> db
+          (assoc-in [:generator :form] (data->form data))
+          (assoc-in [:generator :action] action)
+          (assoc :modal nil)
+          (assoc :view :edit)))))
+
+
+(reg-event-db
+  :generator/update-form-field
+  [trim-v]
+  (fn [db [field-id key value]]
+    (assoc-in db [:generator :form :fields field-id key] value)))
