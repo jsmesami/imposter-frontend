@@ -11,8 +11,8 @@
   (fn [{:keys [db]} [poster-id]]
     (if poster-id
       {:dispatch [:net/xhr :get (poster-resource db poster-id)
-                  :success-fx (fn [db response]
-                                {:dispatch [:generator/edit :edit response]})]}
+                  :success-fx (fn [_ response]
+                                {:dispatch [:generator/edit :update response]})]}
       {:db (assoc db :modal :select-spec)})))
 
 

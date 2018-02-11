@@ -1,7 +1,7 @@
 (ns mkp.imposter.modals.views.spec-modal
   (:require
     [re-frame.core :refer [subscribe]]
-    [mkp.imposter.modals.views.modal :refer [modal]]
+    [mkp.imposter.modals.views.modal :refer [generic-modal]]
     [mkp.imposter.utils.bem :as bem]
     [mkp.imposter.utils.events :refer [click-dispatcher]]))
 
@@ -25,7 +25,7 @@
 (defn select-spec
   []
   (let [spec-list @(subscribe [:resources/spec])]
-    [modal
+    [generic-modal
      [:div {:class module-name}
        [:div.row.text-center
         [:h2.col-sm-12 "Vyberte šablonu"]]

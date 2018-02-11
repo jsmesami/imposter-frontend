@@ -39,15 +39,15 @@
     [:button
      (merge default-attrs attrs)
      label
-
      (if busy?
        [icon "spinner" :classes ["spinning"]]
        (when icon-name [icon icon-name]))]))
 
 
 (defn input
-  [& {:keys [enabled? type value on-change on-key-press attrs classes]
+  [& {:keys [enabled? widget type value on-change on-key-press attrs classes]
       :or {enabled? true
+           widget :input
            type :text
            attrs {}
            classes []}}]
@@ -59,8 +59,7 @@
                                         (on-key-press %))
                        :disabled (when-not enabled? "disabled")
                        :type type}]
-    [:div
-     [:input (merge default-attrs attrs)]]))
+    [widget (merge default-attrs attrs)]))
 
 
 (defn select
@@ -68,15 +67,14 @@
               :or {enabled? true
                    attrs {}
                    classes []}}]
-  (let [default-attrs {:value (if (nil? value) "" value)
+  (let [default-attrs {:value (or value "")
                        :class (join " " classes)
                        :on-change #(when (and enabled? on-change)
                                      (on-change (-> % .-target .-value)))
                        :disabled (when-not enabled? "disabled")}]
-    [:div
-     [:select (merge default-attrs attrs)
-      (for [[text value] options]
-        [:option
-         {:key value
-          :value value}
-         text])]]))
+    [:select (merge default-attrs attrs)
+     (for [[text value] options]
+       [:option
+        {:key value
+         :value value}
+        text])]))

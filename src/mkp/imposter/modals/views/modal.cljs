@@ -24,7 +24,7 @@
    [icon "cross"]])
 
 
-(defn modal
+(defn generic-modal
   [content & {:keys [dismissable?]
               :or {dismissable? true}}]
   (let [handle-esc (fn [e] (if (esc? e) (dismiss! e) true))]
