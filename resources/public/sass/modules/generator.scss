@@ -1,8 +1,16 @@
 .generator {
+  overflow: hidden;
   .form-group label {
     width: 100%;
   }
   .icon--star {
     color: $primary;
+  }
+  &__thumb {
+    width: 200px;
+    margin-top: 15px;
+    img {
+      width: 100%;
+    }
   }
 }

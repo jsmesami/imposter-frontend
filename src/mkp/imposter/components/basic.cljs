@@ -78,3 +78,19 @@
         {:key value
          :value value}
         text])]))
+
+
+(defn select-image
+  [& {:keys [enabled? on-change attrs classes]
+      :or {enabled? true
+           type :text
+           attrs {}
+           classes []}}]
+  (let [default-attrs {:class (join " " classes)
+                       :on-change (fn [e]
+                                    (let [files (-> e .-target .-files)]
+                                      (when (and enabled? on-change (pos? (.-length files)))
+                                        (on-change (aget files 0)))))
+                       :disabled (when-not enabled? "disabled")
+                       :type "file"}]
+    [:input (merge default-attrs attrs)]))
