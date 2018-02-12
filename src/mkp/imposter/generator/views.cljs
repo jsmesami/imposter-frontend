@@ -2,7 +2,9 @@
   (:require
     [re-frame.core :refer [dispatch subscribe]]
     [mkp.imposter.components.basic :refer [icon input select-image]]
-    [mkp.imposter.utils.file-reader :refer [file->base64]]))
+    [mkp.imposter.utils.file-reader :refer [file->base64]]
+    [mkp.imposter.utils.string :refer [shorten]]))
+
 
 (defmulti render-field
           (fn [loading? [id {:keys [type]}]]
@@ -36,14 +38,14 @@
      [:label name (when mandatory [icon "star"])
       [:br]
       [:button.btn.btn--primary
-       (take-last 30 (or filename "Vyberte obrázek"))
+       (shorten (or filename "Vyberte obrázek") 30)
        [select-image
         :on-change dispatcher
         :enabled? (not loading?)
         :classes ["form-control-file"]]]]
      (when-let [uri (or data url)]
        [:div.generator__thumb
-        [:img {:src uri}]])]))
+        [:img.img-thumbnail {:src uri}]])]))
 
 
 (defn generator
