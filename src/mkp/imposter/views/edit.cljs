@@ -1,6 +1,6 @@
 (ns mkp.imposter.views.edit
   (:require
-    [mkp.imposter.generator.views :refer [generator]]
+    [mkp.imposter.generator.views.core :refer [generator]]
     [mkp.imposter.components.navbar :refer [navbar]]))
 
 
