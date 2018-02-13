@@ -25,7 +25,6 @@
     (update-field-dispatcher field-id :filename filename)
     (update-field-dispatcher field-id :error nil)
     (catch js/Error e
-      (js/console.log (.-message e))
       (update-field-dispatcher field-id :error (.-message e)))))
 
 

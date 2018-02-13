@@ -20,7 +20,8 @@
     :enabled? (not loading?)
     :classes ["form-control" (when error "is-invalid")]
     :widget (keyword (or widget :input))
-    :attrs {:maxLength char_limit}]
+    :attrs {:id id
+            :maxLength char_limit}]
    [char-counter text char_limit]
    [error-msg error]])
 
@@ -28,14 +29,18 @@
 (defmethod render-field :image
   [loading? [id {:keys [name filename url data error mandatory]}]]
   [:div.file-selector
-   [:label name (when mandatory [icon "star"])
+   [:label
+    name (when mandatory [icon "star"])
     [:br]
-    [:button.btn.btn-sm.btn-outline-primary
-     (shorten (or filename "vyberte obrázek (JPEG nebo PNG)") 32)
-     [select-image
-      :on-change #(update-image-dispatcher id %)
-      :enabled? (not loading?)
-      :classes ["form-control-file" (when error "is-invalid")]]]]
+    [:label.btn.btn-outline-primary.btn-sm
+     {:for id}
+     (shorten (or filename "vyberte obrázek (JPEG nebo PNG)") 32)]
+    [select-image
+     :on-change #(update-image-dispatcher id %)
+     :enabled? (not loading?)
+     :classes ["form-control-file" (when error "is-invalid")]
+     :attrs {:id id
+             :accept "image/png, image/jpeg"}]]
    [error-msg error]
    (when-let [uri (or data url)]
      [:div.generator__thumb
