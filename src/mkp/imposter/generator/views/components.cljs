@@ -10,3 +10,9 @@
      " znaků z "
      [:strong char_limit]
      " dostupných."]))
+
+
+(defn error-msg
+  [error]
+  (when error
+    [:small.form-text.is-invalid error]))
