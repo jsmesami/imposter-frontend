@@ -6,6 +6,17 @@
     [mkp.imposter.utils.string :refer [shorten]]))
 
 
+(defn char-counter
+  [text char_limit]
+  (when char_limit
+    [:small.form-text.text-muted
+     "Vyplněno "
+     [:strong (count text)]
+     " znaků z "
+     [:strong char_limit]
+     " dostupných."]))
+
+
 (defmulti render-field
           (fn [loading? [id {:keys [type]}]]
             (keyword type)))
@@ -22,7 +33,8 @@
       :enabled? (not loading?)
       :classes ["form-control"]
       :widget (keyword (or widget :input))
-      :attrs {:maxLength char_limit}]]))
+      :attrs {:maxLength char_limit}]
+     [char-counter text char_limit]]))
 
 
 (defmethod render-field :image
@@ -37,8 +49,8 @@
     [:div.file-selector
      [:label name (when mandatory [icon "star"])
       [:br]
-      [:button.btn.btn--primary
-       (shorten (or filename "Vyberte obrázek") 30)
+      [:button.btn.btn-outline-primary
+       (shorten (or filename "vyberte obrázek (JPEG nebo PNG)") 32)
        [select-image
         :on-change dispatcher
         :enabled? (not loading?)
@@ -48,14 +60,20 @@
         [:img.img-thumbnail {:src uri}]])]))
 
 
+(defn editor-fields
+  [loading? fields]
+  [:div
+   (for [[id field] (sort-by #(-> % second :order) fields)]
+     ^{:key id}
+     [:div.row.justify-content-around
+      [:div.form-group.col-md-8
+       (render-field loading? [id field])]])])
+
+
 (defn generator
   []
   (let [data @(subscribe [:generator/data])
         loading? @(subscribe [:net/loading?])
-        sorted-fields (sort-by #(-> % second :order) (get-in data [:form :fields]))]
+        fields (get-in data [:form :fields])]
     [:div.generator.container
-     (for [[id field] sorted-fields]
-       ^{:key id}
-       [:div.row.justify-content-around
-        [:div.form-group.col-md-8
-         (render-field loading? [id field])]])]))
+     [editor-fields loading? fields]]))
