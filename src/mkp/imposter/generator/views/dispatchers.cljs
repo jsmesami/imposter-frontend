@@ -4,9 +4,10 @@
     [mkp.imposter.utils.file-reader :refer [file->base64]]))
 
 
-(defn- update-field-dispatcher
-  [field-id key value]
-  (dispatch [:generator/update-form-field field-id key value]))
+(defn update-field-dispatcher
+  [field-id kvs]
+  (doseq [[key value] kvs]
+    (dispatch [:generator/update-form-field field-id key value])))
 
 
 (defn- validate-image-data
@@ -21,11 +22,11 @@
 (defn- save-image-data
   [field-id filename base64]
   (try
-    (update-field-dispatcher field-id :data (validate-image-data base64))
-    (update-field-dispatcher field-id :filename filename)
-    (update-field-dispatcher field-id :error nil)
+    (update-field-dispatcher field-id {:data (validate-image-data base64)
+                                       :filename filename
+                                       :error nil})
     (catch js/Error e
-      (update-field-dispatcher field-id :error (.-message e)))))
+      (update-field-dispatcher field-id {:error (.-message e)}))))
 
 
 (defn update-image-dispatcher
@@ -35,4 +36,4 @@
 
 (defn update-text-dispatcher
   [field-id text]
-  (update-field-dispatcher field-id :text text))
+  (update-field-dispatcher field-id {:text text}))
