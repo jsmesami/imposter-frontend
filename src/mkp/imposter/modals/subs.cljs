@@ -9,6 +9,6 @@
 
 
 (reg-sub
-  :modals/current-modal
+  :modals/current
   (fn [db _]
     (-> db :modal modal-id->modal)))

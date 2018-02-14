@@ -20,15 +20,17 @@
 
 
 (reg-event-fx
-  :net/xhr
+  :net/json-xhr
   [trim-v inc-loading-count]
-  (fn [_ [method uri & {:keys [success-fx failure-fx timeout]
-                        :or {success-fx default-success-fx
+  (fn [_ [method uri & {:keys [data success-fx failure-fx timeout]
+                        :or {data {}
+                             success-fx default-success-fx
                              failure-fx default-failure-fx
                              timeout default-request-timeout}}]]
     {:http-xhrio {:method          method
                   :uri             uri
                   :timeout         timeout
+                  :params          data
                   :format          (ajax/json-request-format)
                   :response-format (ajax/json-response-format {:keywords? true})
                   :on-success      [:net/success success-fx]

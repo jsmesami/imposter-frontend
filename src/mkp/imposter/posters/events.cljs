@@ -11,7 +11,7 @@
   (fn [{:keys [db]}]
     (let [posters (:posters db)
           uri (str (get-in db [:resources :endpoints :poster]) (m->qs (:filter posters)))]
-      {:dispatch [:net/xhr :get uri
+      {:dispatch [:net/json-xhr :get uri
                   :success-fx (fn [db response]
                                 {:db (-> db
                                          (assoc-in [:posters :count] (:count response))
@@ -39,7 +39,7 @@
   :posters/delete
   [trim-v]
   (fn [{:keys [db]} [poster-id]]
-    {:dispatch [:net/xhr :delete (poster-resource db poster-id)
+    {:dispatch [:net/json-xhr :delete (poster-resource db poster-id)
                 :success-fx #(hash-map :dispatch-n [[:alert/add-message :success "Plakát byl úspěšně smazán" 5000]
                                                     [:posters/reload]])]}))
 

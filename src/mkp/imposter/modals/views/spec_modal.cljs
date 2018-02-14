@@ -13,7 +13,7 @@
   [spec]
   [:div.col-6.col-sm-4.col-md-3.mb-4
    [:a.card {:href "#"
-             :on-click (click-dispatcher [:generator/edit :create spec])}
+             :on-click (click-dispatcher [:generator/create spec])}
     [:div.card-header
      (:name spec)]
     [:img.card-img-bottom

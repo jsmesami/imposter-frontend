@@ -11,6 +11,6 @@
 
 
 (reg-sub
-  :views/current-view
+  :views/current
   (fn [db _]
     (-> db :view view-id->view)))

@@ -7,9 +7,8 @@
 
 (defn generator
   []
-  (let [data @(subscribe [:generator/data])
-        loading? @(subscribe [:net/loading?])
-        fields (get-in data [:form :fields])]
+  (let [form @(subscribe [:generator/form])
+        loading? @(subscribe [:net/loading?])]
     [:div.generator.container
-     [form-fields loading? fields]
-     [generator-buttons loading? fields]]))
+     [form-fields loading? form]
+     [generator-buttons loading? form]]))

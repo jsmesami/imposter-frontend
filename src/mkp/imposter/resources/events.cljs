@@ -8,7 +8,7 @@
   :resources/fetch-data
   [trim-v]
   (fn [_]
-    {:dispatch [:net/xhr :get api-uri
+    {:dispatch [:net/json-xhr :get api-uri
                 :success-fx (fn [db response]
                               {:db (assoc-in db [:resources :endpoints] response)
                                :dispatch-n [[:resources/fetch-bureau-data]
@@ -20,7 +20,7 @@
   :resources/fetch-bureau-data
   [trim-v]
   (fn [{:keys [db]}]
-    {:dispatch [:net/xhr :get (get-in db [:resources :endpoints :bureau])
+    {:dispatch [:net/json-xhr :get (get-in db [:resources :endpoints :bureau])
                 :success-fx (fn [db response]
                               {:db (assoc-in db [:resources :bureau] response)})]}))
 
@@ -29,6 +29,6 @@
   :resources/fetch-spec-data
   [trim-v]
   (fn [{:keys [db]}]
-    {:dispatch [:net/xhr :get (get-in db [:resources :endpoints :spec])
+    {:dispatch [:net/json-xhr :get (get-in db [:resources :endpoints :spec])
                 :success-fx (fn [db response]
                               {:db (assoc-in db [:resources :spec] response)})]}))

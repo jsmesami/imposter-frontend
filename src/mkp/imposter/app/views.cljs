@@ -7,8 +7,8 @@
 
 (defn app
   []
-  (let [view @(subscribe [:views/current-view])
-        modal @(subscribe [:modals/current-modal])]
+  (let [view @(subscribe [:views/current])
+        modal @(subscribe [:modals/current])]
     [:div
      [loader]
      [alerts]

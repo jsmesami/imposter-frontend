@@ -4,6 +4,6 @@
 
 
 (reg-sub
-  :generator/data
+  :generator/form
   (fn [db _]
-    (:generator db)))
+    (get-in db [:generator :form])))

@@ -8,3 +8,10 @@
   [trim-v]
   (fn [db]
     (assoc db :modal nil)))
+
+
+(reg-event-db
+  :modals/set
+  [trim-v]
+  (fn [db [id]]
+    (assoc db :modal id)))

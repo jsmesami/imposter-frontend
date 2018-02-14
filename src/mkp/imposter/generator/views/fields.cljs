@@ -7,7 +7,7 @@
 
 
 (defmulti render-field
-          (fn [loading? [id {:keys [type]}]]
+          (fn [_ [_ {:keys [type]}]]
             (keyword type)))
 
 
@@ -48,9 +48,9 @@
 
 
 (defn form-fields
-  [loading? fields]
+  [loading? form]
   [:div
-   (for [[id field] (sort-by #(-> % second :order) fields)]
+   (for [[id field] (sort-by #(-> % second :order) (:fields form))]
      ^{:key id}
      [:div.row.justify-content-around
       [:div.form-group.col-md-8
