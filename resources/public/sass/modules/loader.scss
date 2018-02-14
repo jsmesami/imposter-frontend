@@ -1,5 +1,9 @@
 .loader {
+  width: 100%;
   height: $loader-height;
+  position: fixed;
+  top: 0;
+  z-index: $zindex-modal;
   background: linear-gradient(-45deg, #c41100, #d59700, #c41100);
   background-size: 400% 400%;
   &--loading {
