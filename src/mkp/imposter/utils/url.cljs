@@ -14,3 +14,8 @@
                   [])
        (interpose "&")
        (apply str "?")))
+
+
+(defn get-filename
+  [uri]
+  (second (re-find #"^.*/([^/]+)$" uri)))

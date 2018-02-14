@@ -3,7 +3,8 @@
     [mkp.imposter.components.basic :refer [icon]]
     [mkp.imposter.posters.db :refer [posters-per-page]]
     [mkp.imposter.utils.bem :refer [bem] :as bem]
-    [mkp.imposter.utils.events :refer [click-dispatcher]]))
+    [mkp.imposter.utils.events :refer [click-dispatcher]]
+    [mkp.imposter.utils.url :refer [get-filename]]))
 
 
 (def module-name "poster-thumb")
@@ -15,7 +16,8 @@
        :title "stáhnout"
        :href (:print poster)
        :target "_blank"
-       :rel "noopener noreferrer"}
+       :rel "noopener noreferrer"
+       :download (-> poster :print get-filename)}
       [icon "download"]])
 
 
