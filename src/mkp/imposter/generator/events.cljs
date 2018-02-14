@@ -29,6 +29,13 @@
 
 
 (reg-event-db
+  :generator/cancel-edit
+  [trim-v]
+  (fn [db]
+    (assoc db :view :home)))
+
+
+(reg-event-db
   :generator/update-form-field
   [trim-v]
   (fn [db [field-id key value]]
