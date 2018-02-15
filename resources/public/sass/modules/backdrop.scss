@@ -1,22 +1,24 @@
-// Suppress scroll on body
-body.with-backdrop {
-  overflow: hidden;
-  .view {
-    filter: brightness(2) grayscale(20%) blur(5px);
+body {
+  &.with-backdrop {
+    overflow: hidden; // Suppress scroll on body
+    .view {
+      filter: brightness(2) grayscale(20%) blur(5px);
+      transition: filter 250ms;
+    }
   }
 }
 
 .backdrop,
 .backdrop__content {
-  position: absolute;
-  top: $loader-height;
-  bottom: 0;
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
+  width: 100vw;
+  height: 100vh;
+  margin-top: $loader-height;
 }
 
 .backdrop {
-  top: $loader-height;
   background: white;
   opacity: 0.5;
 }

@@ -62,7 +62,7 @@
 (reg-event-fx
   :generator/preview
   (fn [_]
-    {:dispatch [:modals/set :preview]}))
+    {:dispatch [:modals/set :preview-poster]}))
 
 
 (reg-event-fx

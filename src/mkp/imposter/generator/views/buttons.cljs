@@ -7,26 +7,26 @@
 (defn generator-buttons
   [loading? form]
   [:div.row.justify-content-around
-   [:div.col-md-8.mb-5
+   [:div.col-md-8.mb-3
     [:hr]
     [:p.small "Pole označená" [icon "star"] "jsou povinná."]
     [button "domů"
-     :classes ["mr-3"]
+     :classes ["mr-3" "mb-3"]
      :icon-name "left"
      :enabled? (not loading?)
      :on-click #(dispatch [:generator/cancel-edit])]
     [button "generovat"
-     :classes ["mr-3"]
+     :classes ["mr-3" "mb-3"]
      :icon-name "pdf"
      :enabled? (not loading?)
      :busy? loading?
      :on-click #(dispatch [:generator/submit])]
     [button "náhled"
-     :classes ["mr-3"]
+     :classes ["mr-3" "mb-3"]
      :icon-name "media"
      :enabled? (not loading?)
      :on-click #(dispatch [:generator/preview])]
     [button "stáhnout"
-     :classes []
+     :classes ["mb-3"]
      :icon-name "download"
      :enabled? (not loading?)]]])
