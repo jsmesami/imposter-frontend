@@ -26,11 +26,11 @@
 
 
 (defn preview-button
-  [enabled?]
+  [enabled? link]
   [button "náhled"
    :classes ["mr-3" "mb-3"]
    :icon-name "media"
-   :enabled? enabled?
+   :enabled? (and enabled? link)
    :on-click #(dispatch [:generator/preview])])
 
 
@@ -45,6 +45,16 @@
    "stáhnout" [icon "download"]])
 
 
+(defn help-messages
+  [filled? changed?]
+  [:p.small
+   (if-not filled?
+     [:span "Pole označená" [icon "star"] "jsou povinná."]
+     (if-not changed?
+       [:span "Pro generování plakátu je potřeba změnit některou položku."]
+       [:span "Pro náhled nebo stažení stiskněte \"generovat\"."]))])
+
+
 (defn generator-buttons
   [loading? form]
   (let [changed? (form-changed? form)
@@ -53,8 +63,8 @@
     [:div.row.justify-content-around
      [:div.col-md-8.mb-3
       [:hr]
-      [:p.small "Pole označená" [icon "star"] "jsou povinná."]
+      [help-messages filled? changed?]
       [home-button (not loading?)]
       [generate-button (and changed? filled?) loading?]
-      [preview-button ready?]
+      [preview-button ready? (:thumb form)]
       [download-button ready? (:print form)]]]))
