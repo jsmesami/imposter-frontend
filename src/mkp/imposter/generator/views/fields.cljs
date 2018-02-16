@@ -10,8 +10,8 @@
 
 
 (defmulti render-field
-          (fn [_ [_ {:keys [type]}]]
-            (keyword type)))
+          (fn [_ [_ field]]
+            (-> field :type keyword)))
 
 
 (defmethod render-field :text

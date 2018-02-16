@@ -16,13 +16,13 @@
 
 
 (defn generate-button
-  [enabled? busy?]
+  [enabled? busy? form]
   [button "generovat"
    :classes ["mr-3" "mb-3"]
    :icon-name "pdf"
    :enabled? enabled?
    :busy? busy?
-   :on-click #(dispatch [:generator/submit])])
+   :on-click #(dispatch [:generator/submit form])])
 
 
 (defn preview-button
@@ -65,6 +65,6 @@
       [:hr]
       [help-messages filled? changed?]
       [home-button (not loading?)]
-      [generate-button (and changed? filled?) loading?]
+      [generate-button (and changed? filled?) loading? form]
       [preview-button ready? (:thumb form)]
       [download-button ready? (:print form)]]]))

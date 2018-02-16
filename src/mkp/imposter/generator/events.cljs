@@ -2,7 +2,8 @@
   (:require
     [re-frame.core :refer [reg-event-db reg-event-fx trim-v]]
     [mkp.imposter.resources.core :refer [poster-resource]]
-    [mkp.imposter.generator.form :refer [poster->form spec->form]]))
+    [mkp.imposter.generator.form :refer [poster->form spec->form]]
+    [mkp.imposter.generator.request :refer [form->request]]))
 
 
 (defn edit-poster-fx
@@ -68,11 +69,11 @@
 (reg-event-fx
   :generator/submit
   [trim-v]
-  (fn [{:keys [db]}]
-    (if-let [poster-id (get-in db [:generator :form :poster])]
+  (fn [{:keys [db]} [form]]
+    (if-let [poster-id (:poster form)]
       {:dispatch [:net/json-xhr :patch (poster-resource db poster-id)
-                  :data {}  ;;TODO
+                  :data (form->request form)
                   :success-fx edit-poster-fx]}
       {:dispatch [:net/json-xhr :post (get-in db [:resources :endpoints :poster])
-                  :data {}  ;; TODO
+                  :data (form->request form)
                   :success-fx edit-poster-fx]})))
