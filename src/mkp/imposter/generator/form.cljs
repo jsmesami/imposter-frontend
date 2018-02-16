@@ -14,8 +14,8 @@
   {:poster (:id poster)
    :thumb (:thumb poster)
    :print (:print poster)
-   :bureau (get-in poster [:bureau :id])
-   :spec (get-in poster [:spec :id])
+   :bureau (or (get-in poster [:bureau :id]) (:bureau poster))
+   :spec (or (get-in poster [:spec :id]) (:spec poster))
    :fields (merge (get-in poster [:spec :fields])
                   (:fields poster))})
 
