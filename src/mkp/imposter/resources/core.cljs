@@ -5,5 +5,14 @@
 
 
 (defn poster-resource
+  "Assemble poster resource from poster ID"
   [db poster-id]
   (str (get-in db [:resources :endpoints :poster]) poster-id "/"))
+
+
+(defn resource->options
+  "Convert list of resource items into select input options"
+  [resource]
+  (->> resource
+       (map #(vector (:name %) (:id %)))
+       (cons ["-" ""])))

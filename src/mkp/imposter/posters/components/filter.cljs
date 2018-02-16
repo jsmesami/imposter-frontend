@@ -3,7 +3,8 @@
     [clojure.string :refer [join]]
     [reagent.core :as reagent]
     [re-frame.core :refer [dispatch subscribe]]
-    [mkp.imposter.components.basic :refer [button input select]]))
+    [mkp.imposter.components.basic :refer [button input select]]
+    [mkp.imposter.resources.core :refer [resource->options]]))
 
 
 (defn filter-since
@@ -32,33 +33,24 @@
 
 (defn filter-bureau
   [f* loading?]
-  (let [bureau-res @(subscribe [:resources/bureau])
-        options (->> bureau-res
-                     (map #(vector (:name %) (:id %)))
-                     (cons ["-" ""]))]
-    [:div.col-auto
-     [:label "Pobočka:"
-      [select options
-       :value (:bureau @f*)
-       :classes ["form-control"]
-       :enabled? (not loading?)
-       :on-change #(swap! f* assoc :bureau %)]]]))
+  [:div.col-auto
+   [:label "Pobočka:"
+    [select (resource->options @(subscribe [:resources/bureau]))
+     :value (:bureau @f*)
+     :classes ["form-control"]
+     :enabled? (not loading?)
+     :on-change #(swap! f* assoc :bureau %)]]])
 
 
 (defn filter-spec
   [f* loading?]
-  (let [spec-res @(subscribe [:resources/spec])
-        options (->> spec-res
-                     (map #(vector (:name %) (:id %)))
-                     (cons ["-" ""]))]
-    [:div.col-auto
-     [:label "Šablona:"
-      [select options
-       :value (:spec @f*)
-       :classes ["form-control"]
-       :enabled? (not loading?)
-       :on-change #(swap! f* assoc :spec %)]]]))
-
+  [:div.col-auto
+   [:label "Šablona:"
+    [select (resource->options @(subscribe [:resources/spec]))
+     :value (:spec @f*)
+     :classes ["form-control"]
+     :enabled? (not loading?)
+     :on-change #(swap! f* assoc :spec %)]]])
 
 
 (defn clear-button
