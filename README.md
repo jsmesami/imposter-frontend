@@ -9,11 +9,13 @@ A standalone repository for single-page JS application consuming
 [backend](https://github.com/jsmesami/imposter-backend) API. The app is written in 
 [ClojureScript](https://clojurescript.org/) for better maintainability.
 
+![Screenshot](/docs/screenshot.png "Running application")
+
 ## Development
 
 ### Prequisities
 
-* Node.js, Yarn, Gulp 3
+* Node 6+, Yarn, Gulp 3
 * Java 8, [Leiningen](https://leiningen.org/) 2.8
 
 ### Environment
