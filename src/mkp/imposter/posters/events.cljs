@@ -45,6 +45,13 @@
 
 
 (reg-event-fx
+  :posters/preview
+  [trim-v]
+  (fn [_ [link]]
+    {:dispatch [:modals/set :preview-poster {:thumb link}]}))
+
+
+(reg-event-fx
   :posters/edit
   [trim-v]
   (fn [_ [poster-id]]

@@ -10,9 +10,9 @@
 
 (defn preview-poster
   []
-  (let [form @(subscribe [:generator/form])]
+  (let [data @(subscribe [:modals/data])]
     [generic-modal
      [:div {:class module-name}
       [:img.img-thumbnail.mx-auto
        {:class (bem/be module-name "thumb")
-        :src   (:thumb form)}]]]))
+        :src   (:thumb data)}]]]))

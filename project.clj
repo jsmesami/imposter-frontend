@@ -1,4 +1,4 @@
-(defproject imposter-frontend "0.1.0"
+(defproject imposter-frontend "1.0.2"
   :description "Imposter is a poster generation tool for Municipal Library of Prague"
 
   :url "https://github.com/jsmesami/imposter-frontend"
@@ -14,9 +14,9 @@
                  [cljs-ajax "0.7.3"]
                  [com.cemerick/url "0.1.1"]
                  [reagent "0.7.0"]
-                 [reagent-utils "0.2.1"]
-                 [re-frame "0.10.3"]
-                 [day8.re-frame/http-fx "0.1.4"]]
+                 [reagent-utils "0.3.0"]
+                 [re-frame "0.10.5"]
+                 [day8.re-frame/http-fx "0.1.5"]]
 
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-doo "0.1.8"]
@@ -29,7 +29,7 @@
                                   [binaryage/devtools "0.9.9"]
                                   [doo "0.1.8"]
                                   [day8.re-frame/test "0.1.5"]
-                                  [day8.re-frame/trace "0.1.16"]
+                                  [day8.re-frame/re-frame-10x "0.2.0"]
                                   ;; Development webserver:
                                   [clj-http "3.7.0"]
                                   [compojure "1.6.0"]
@@ -69,7 +69,7 @@
                            :closure-defines {"re_frame.trace.trace_enabled_QMARK_" true}
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
-                           :preloads [devtools.preload day8.re-frame.trace.preload mkp.imposter.preload]}}
+                           :preloads [devtools.preload day8.re-frame-10x.preload mkp.imposter.preload]}}
 
                {:id "min"
                 :source-paths ["src"]

@@ -13,4 +13,10 @@
 (reg-sub
   :modals/current
   (fn [db _]
-    (-> db :modal modal-id->modal)))
+    (modal-id->modal (get-in db [:modal :id]))))
+
+
+(reg-sub
+  :modals/data
+  (fn [db _]
+    (get-in db [:modal :data])))

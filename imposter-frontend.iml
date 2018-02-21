@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module cursive.leiningen.project.LeiningenProjectsManager.displayName="imposter-frontend:0.1.0" cursive.leiningen.project.LeiningenProjectsManager.isLeinModule="true" type="JAVA_MODULE" version="4">
+<module cursive.leiningen.project.LeiningenProjectsManager.displayName="imposter-frontend:1.0.2" cursive.leiningen.project.LeiningenProjectsManager.isLeinModule="true" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/classes" />
@@ -61,13 +61,12 @@
     <orderEntry type="library" name="Leiningen: compojure:1.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: crypto-equality:1.0.0" level="project" />
     <orderEntry type="library" name="Leiningen: crypto-random:1.2.0" level="project" />
-    <orderEntry type="library" name="Leiningen: day8.re-frame/http-fx:0.1.4" level="project" />
+    <orderEntry type="library" name="Leiningen: day8.re-frame/http-fx:0.1.5" level="project" />
+    <orderEntry type="library" name="Leiningen: day8.re-frame/re-frame-10x:0.2.0" level="project" />
     <orderEntry type="library" name="Leiningen: day8.re-frame/test:0.1.5" level="project" />
-    <orderEntry type="library" name="Leiningen: day8.re-frame/trace:0.1.16" level="project" />
     <orderEntry type="library" name="Leiningen: doo:0.1.8" level="project" />
     <orderEntry type="library" name="Leiningen: figwheel-sidecar:0.5.14" level="project" />
     <orderEntry type="library" name="Leiningen: figwheel:0.5.14" level="project" />
-    <orderEntry type="library" name="Leiningen: garden:1.3.3" level="project" />
     <orderEntry type="library" name="Leiningen: hawk:0.2.11" level="project" />
     <orderEntry type="library" name="Leiningen: hiccup:1.0.5" level="project" />
     <orderEntry type="library" name="Leiningen: http-kit:2.2.0" level="project" />
@@ -116,8 +115,8 @@
     <orderEntry type="library" name="Leiningen: org.ow2.asm/asm-all:4.2" level="project" />
     <orderEntry type="library" name="Leiningen: pathetic:0.5.0" level="project" />
     <orderEntry type="library" name="Leiningen: potemkin:0.4.3" level="project" />
-    <orderEntry type="library" name="Leiningen: re-frame:0.10.3" level="project" />
-    <orderEntry type="library" name="Leiningen: reagent-utils:0.2.1" level="project" />
+    <orderEntry type="library" name="Leiningen: re-frame:0.10.5" level="project" />
+    <orderEntry type="library" name="Leiningen: reagent-utils:0.3.0" level="project" />
     <orderEntry type="library" name="Leiningen: reagent:0.7.0" level="project" />
     <orderEntry type="library" name="Leiningen: riddley:0.1.12" level="project" />
     <orderEntry type="library" name="Leiningen: ring-cors:0.1.11" level="project" />

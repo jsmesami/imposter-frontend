@@ -31,7 +31,7 @@
    :classes ["mr-3" "mb-3"]
    :icon-name "media"
    :enabled? (and enabled? link)
-   :on-click #(dispatch [:generator/preview])])
+   :on-click #(dispatch [:generator/preview link])])
 
 
 (defn download-button

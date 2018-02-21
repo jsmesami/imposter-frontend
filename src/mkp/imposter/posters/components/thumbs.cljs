@@ -10,6 +10,15 @@
 (def module-name "poster-thumb")
 
 
+(defn thumb-preview-button
+  [poster]
+  [:a {:class (bem module-name "button" ["preview"])
+       :title "náhled"
+       :href "#"
+       :on-click (click-dispatcher [:posters/preview (:thumb poster)])}
+      [icon "media"]])
+
+
 (defn thumb-download-button
   [poster]
   [:a {:class (bem module-name "button" ["download"])
@@ -44,9 +53,10 @@
 (defn thumb-buttons
   [poster]
   [:div {:class (bem/be module-name "buttons")}
-   [thumb-download-button poster]
-   [thumb-edit-button poster]
-   [thumb-delete-button poster]])
+   (for [[i fun] (map-indexed vector [thumb-preview-button thumb-download-button
+                                      thumb-edit-button thumb-delete-button])]
+     ^{:key i}
+     [fun poster])])
 
 
 (defn thumb-badges

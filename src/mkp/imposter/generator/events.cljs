@@ -62,8 +62,9 @@
 
 (reg-event-fx
   :generator/preview
-  (fn [_]
-    {:dispatch [:modals/set :preview-poster]}))
+  [trim-v]
+  (fn [_ [link]]
+    {:dispatch [:modals/set :preview-poster {:thumb link}]}))
 
 
 (reg-event-fx
