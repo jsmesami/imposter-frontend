@@ -61,8 +61,9 @@
   and also populates read-only but mandatory 'bureau address' form field."
   [loading? form]
   (let [bureau-resource @(subscribe [:resources/bureau])
+        full-address #(str "Pobočka " (:name %) ", " (:address %))
         bureau-id->address (->> bureau-resource
-                                (map #(vector (:id %) (:address %)))
+                                (map #(vector (:id %) (full-address %)))
                                 (into (hash-map)))]
     [:div.row.justify-content-around
      [:div.form-group.col-md-8
