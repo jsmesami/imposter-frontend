@@ -1,4 +1,6 @@
-(ns mkp.imposter.utils.string)
+(ns mkp.imposter.utils.string
+  (:require
+    [clojure.string :refer [blank?]]))
 
 
 (defn shorten
@@ -10,4 +12,4 @@
 
 (defn filled?
   [s]
-  (and (string? s) (not (clojure.string/blank? s))))
+  (and (string? s) (not (blank? s))))

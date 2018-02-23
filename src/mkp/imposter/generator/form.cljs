@@ -42,8 +42,7 @@
        :fields
        vals
        (filter :mandatory)
-       (map field-filled?)
-       (every? true?)))
+       (every? field-filled?)))
 
 
 (defn form-changed?

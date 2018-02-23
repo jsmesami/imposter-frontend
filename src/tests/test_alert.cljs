@@ -16,10 +16,10 @@
         (is (zero? (count @messages)))
 
         (testing "adding (different kinds of) messages"
-          (dispatch [:alert/add-message :success "success"])
+          (dispatch [:alert/add-message "success" :success])
           (is (= 1 (count @messages)))
 
-          (dispatch [:alert/add-message :error "error"])
+          (dispatch [:alert/add-message "error" :server-error])
           (is (= 2 (count @messages))))
 
         (let [id1 (-> @messages keys (nth 0))
@@ -27,16 +27,16 @@
 
           (testing "messages content"
             (are [a b] (= a b)
-              :success (get-in @messages [id1 :severity])
+              :success (get-in @messages [id1 :kind])
               "success" (get-in @messages [id1 :text])
-              :error (get-in @messages [id2 :severity])
+              :server-error (get-in @messages [id2 :kind])
               "error" (get-in @messages [id2 :text])))
 
           (testing "removing messages"
             (dispatch [:alert/remove-message id1])
             (are [a b] (= a b)
               1 (count @messages)
-              :error (get-in @messages [id2 :severity])
+              :server-error (get-in @messages [id2 :kind])
               "error" (get-in @messages [id2 :text]))
 
             (dispatch [:alert/remove-message id2])

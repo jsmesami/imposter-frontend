@@ -40,7 +40,7 @@
   [trim-v]
   (fn [{:keys [db]} [poster-id]]
     {:dispatch [:net/json-xhr :delete (poster-resource db poster-id)
-                :success-fx #(hash-map :dispatch-n [[:alert/add-message :success "Plakát byl úspěšně smazán" 5000]
+                :success-fx #(hash-map :dispatch-n [[:alert/add-message "Plakát byl úspěšně smazán" :success 5000]
                                                     [:posters/reload]])]}))
 
 

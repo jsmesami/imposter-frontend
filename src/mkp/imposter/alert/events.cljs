@@ -6,10 +6,10 @@
 (reg-event-fx
   :alert/add-message
   [(inject-cofx :app/get-id) trim-v]
-  (fn [{:keys [db id]} [severity text timeout]]
+  (fn [{:keys [db id]} [text kind timeout]]
     (when timeout
       (js/setTimeout #(dispatch [:alert/remove-message id]) timeout))
-    {:db (assoc-in db [:alert :messages id] {:severity severity, :text text})}))
+    {:db (assoc-in db [:alert :messages id] {:kind kind, :text text})}))
 
 
 (reg-event-db

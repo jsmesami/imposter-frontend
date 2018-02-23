@@ -14,3 +14,10 @@
   (fn [e] (do (dispatch event)
               (.preventDefault e)
               false)))
+
+
+(def reload!
+  (fn [e]
+    (.preventDefault e)
+    (-> js/window .-location .reload)
+    false))

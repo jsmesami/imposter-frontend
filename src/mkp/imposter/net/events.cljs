@@ -3,6 +3,7 @@
     [ajax.core :as ajax]
     [day8.re-frame.http-fx]
     [re-frame.core :refer [reg-event-fx trim-v]]
+    [mkp.imposter.alert.core :refer [status->kind]]
     [mkp.imposter.net.interceptors :refer [inc-loading-count dec-loading-count]]
     [mkp.imposter.settings :refer [default-request-timeout]]))
 
@@ -16,7 +17,7 @@
   [db response]
   {:db db
    :app/log [(str "Request error: " (:debug-message response)) :error]
-   :dispatch [:alert/add-message :error "Spojení se nezdařilo."]})
+   :dispatch [:alert/add-message "Spojení se nezdařilo." (-> response :status status->kind)]})
 
 
 (reg-event-fx
