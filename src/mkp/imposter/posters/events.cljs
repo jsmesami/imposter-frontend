@@ -1,6 +1,7 @@
 (ns mkp.imposter.posters.events
   (:require
     [re-frame.core :refer [reg-event-fx trim-v]]
+    [mkp.imposter.alert.core :refer [status->kind]]
     [mkp.imposter.posters.db :refer [PosterFilterInitial]]
     [mkp.imposter.resources.core :refer [poster-resource]]
     [mkp.imposter.utils.url :refer [m->qs]]))
@@ -35,14 +36,28 @@
      :dispatch [:posters/reload]}))
 
 
+(defn poster-delete-success
+  [_]
+  {:dispatch-n [[:alert/add-message "Plakát byl úspěšně smazán." :success 5000]
+                [:posters/reload]]})
+
+
+(defn poster-delete-failure
+  [_ response]
+  (let [failure-kind (-> response :status status->kind)]
+    (if (= :server-error failure-kind)
+      {:dispatch [:alert/add-message "Spojení se nezdařilo." failure-kind]}
+      {:dispatch-n [[:alert/add-message "Plakát se nepodařilo smazat." failure-kind]
+                    [:posters/reload]]})))
+
+
 (reg-event-fx
   :posters/delete
   [trim-v]
   (fn [{:keys [db]} [poster-id]]
     {:dispatch [:net/json-xhr :delete (poster-resource db poster-id)
-                :success-fx #(hash-map :dispatch-n [[:alert/add-message "Plakát byl úspěšně smazán" :success 5000]
-                                                    [:posters/reload]])]}))
-
+                :success-fx poster-delete-success
+                :failure-fx poster-delete-failure]}))
 
 (reg-event-fx
   :posters/preview
