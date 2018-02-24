@@ -54,5 +54,14 @@
 }
 
 .poster-placeholder {
+  height: 70vw;
+  @include media-breakpoint-up(sm) {
+    height: 265px;
+  }
+  @include media-breakpoint-up(lg) {
     height: 326px;
+  }
+  @include media-breakpoint-up(xl) {
+    height: 390px;
+  }
 }

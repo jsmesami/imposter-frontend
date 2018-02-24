@@ -1,4 +1,4 @@
-(defproject imposter-frontend "1.0.2"
+(defproject imposter-frontend "1.0.3"
   :description "Imposter is a poster generation tool for Municipal Library of Prague"
 
   :url "https://github.com/jsmesami/imposter-frontend"
