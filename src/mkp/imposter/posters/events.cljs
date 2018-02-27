@@ -38,7 +38,7 @@
 
 (defn poster-delete-success
   [_]
-  {:dispatch-n [[:alert/add-message "Plakát byl úspěšně smazán." :success 5000]
+  {:dispatch-n [[:alert/add-message "Plakát byl úspěšně smazán." :success 8000]
                 [:posters/reload]]})
 
 

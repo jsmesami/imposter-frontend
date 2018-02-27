@@ -51,7 +51,7 @@
    (if-not filled?
      [:span "Pole označená" [icon "star"] "jsou povinná."]
      (if-not changed?
-       [:span "Pro generování plakátu je potřeba změnit některou položku."]
+       [:span "Pro nové generování plakátu je potřeba změnit některou položku."]
        [:span "Pro náhled nebo stažení stiskněte \"generovat\"."]))])
 
 

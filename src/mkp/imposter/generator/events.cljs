@@ -67,6 +67,12 @@
     {:dispatch [:modals/set :preview-poster {:thumb link}]}))
 
 
+(defn submit-poster-fx
+  [_ poster]
+  {:dispatch-n [[:alert/add-message "Plakát byl uložen." :success 8000]
+                [:generator/edit poster]]})
+
+
 (reg-event-fx
   :generator/submit
   [trim-v]
@@ -74,7 +80,7 @@
     (if-let [poster-id (:poster form)]
       {:dispatch [:net/json-xhr :patch (poster-resource db poster-id)
                   :data (form->request form)
-                  :success-fx edit-poster-fx]}
+                  :success-fx submit-poster-fx]}
       {:dispatch [:net/json-xhr :post (get-in db [:resources :endpoints :poster])
                   :data (form->request form)
-                  :success-fx edit-poster-fx]})))
+                  :success-fx submit-poster-fx]})))
