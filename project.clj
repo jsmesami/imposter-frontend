@@ -20,7 +20,7 @@
 
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-doo "0.1.8"]
-            [lein-figwheel "0.5.14"]
+            [lein-figwheel "0.5.15"]
             [lein-kibit "0.1.6"]]
 
   :profiles {:dev {:dependencies [[org.clojure/tools.nrepl "0.2.13"]
@@ -42,7 +42,6 @@
   :clean-targets ^{:protect false} ["resources/public/js" "target"]
 
   :figwheel {:http-server-root "public"
-             :repl false
              :nrepl-port 7002
              :nrepl-middleware ["cemerick.piggieback/wrap-cljs-repl"]
              :server-port 3449
