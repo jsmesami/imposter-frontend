@@ -1,7 +1,8 @@
 (ns mkp.imposter.generator.views.dispatchers
   (:require
     [re-frame.core :refer [dispatch]]
-    [mkp.imposter.utils.file-reader :refer [file->base64]]))
+    [mkp.imposter.utils.file-reader :refer [file->base64]]
+    [mkp.imposter.utils.string :refer [prepos]]))
 
 
 (defn- update-field-dispatcher
@@ -37,5 +38,5 @@
 
 (defn on-change-text-dispatcher
   [field-id text]
-  (update-field-dispatcher field-id {:text text
+  (update-field-dispatcher field-id {:text (prepos text)
                                      :changed true}))
