@@ -30,6 +30,6 @@
        [:div.row.text-center
         [:h2.col-sm-12 "Vyberte šablonu"]]
        [:div.row {:class (bem/be module-name "spec-list")}
-        (for [spec spec-list]
+        (for [spec (sort-by :id spec-list)]
           ^{:key (:id spec)}
           [spec-card spec])]]]))

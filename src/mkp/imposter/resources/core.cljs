@@ -14,5 +14,6 @@
   "Convert list of resource items into select input options"
   [resource]
   (->> resource
+       (sort-by :id)
        (map #(vector (:name %) (:id %)))
        (cons ["-" ""])))
