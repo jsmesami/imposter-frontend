@@ -55,9 +55,10 @@
   :posters/delete
   [trim-v]
   (fn [{:keys [db]} [poster-id]]
-    {:dispatch [:net/json-xhr :delete (poster-resource db poster-id)
-                :success-fx poster-delete-success
-                :failure-fx poster-delete-failure]}))
+    (when (js/confirm "Nevratná operace. Opravdu chcete smazat plakát?")
+      {:dispatch [:net/json-xhr :delete (poster-resource db poster-id)
+                  :success-fx poster-delete-success
+                  :failure-fx poster-delete-failure]})))
 
 (reg-event-fx
   :posters/preview
