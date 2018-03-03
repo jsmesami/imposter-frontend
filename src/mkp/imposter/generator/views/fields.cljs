@@ -3,7 +3,7 @@
     [re-frame.core :refer [dispatch subscribe]]
     [mkp.imposter.components.basic :refer [icon input select select-image]]
     [mkp.imposter.generator.form :refer [field-filled?]]
-    [mkp.imposter.generator.views.components :refer [char-counter error-msg]]
+    [mkp.imposter.generator.views.components :refer [help-text char-counter error-msg]]
     [mkp.imposter.generator.views.dispatchers :refer [on-change-text-dispatcher on-change-image-dispatcher]]
     [mkp.imposter.resources.core :refer [resource->options]]
     [mkp.imposter.utils.string :refer [shorten]]))
@@ -16,10 +16,11 @@
 
 (defmethod render-field :text
   [loading? [id field]]
-  (let [{:keys [name text error widget char_limit mandatory hidden]} field]
+  (let [{:keys [name text help_text error widget char_limit mandatory hidden]} field]
     [:label
      name
      (when mandatory (if (field-filled? field) [icon "check"] [icon "star"]))
+     [help-text help_text]
      [input
       :value text
       :on-change #(on-change-text-dispatcher id %)
@@ -35,12 +36,13 @@
 
 (defmethod render-field :image
   [loading? [id field]]
-  (let [{:keys [name filename url data error mandatory]} field]
+  (let [{:keys [name filename url data help_text error mandatory]} field]
     [:div.file-selector
      [:label
       name
       (when mandatory (if (field-filled? field) [icon "check"] [icon "star"]))
       [:br]
+      [help-text help_text]
       [:label.btn.btn-outline-primary.btn-sm
        {:for id}
        (shorten (or filename "vyberte obrázek (JPEG nebo PNG)") 32)]

@@ -3,6 +3,10 @@
   .form-group label {
     width: 100%;
   }
+  .help-text {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
   .form-text.is-invalid,
   .icon--star {
     color: $primary;

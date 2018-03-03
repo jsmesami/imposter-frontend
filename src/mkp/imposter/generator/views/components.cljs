@@ -1,6 +1,13 @@
 (ns mkp.imposter.generator.views.components)
 
 
+(defn help-text
+  [text]
+  (when text
+    [:small.form-text.text-muted.help-text
+     text]))
+
+
 (defn char-counter
   [text char_limit]
   (when char_limit
