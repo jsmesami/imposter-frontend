@@ -32,22 +32,20 @@
 
 (defn thumb-edit-button
   [poster]
-  (when (:editable poster)
-    [:a {:class (bem module-name "button" ["edit"])
-         :title "editovat"
-         :href "#"
-         :on-click (click-dispatcher [:posters/edit (:id poster)])}
-        [icon "edit"]]))
+  [:a {:class (bem module-name "button" ["edit"])
+       :title "editovat"
+       :href "#"
+       :on-click (click-dispatcher [:posters/edit (:id poster)])}
+      [icon "edit"]])
 
 
 (defn thumb-delete-button
   [poster]
-  (when (:editable poster)
-    [:a {:class (bem module-name "button" ["delete"])
-         :title "smazat"
-         :href "#"
-         :on-click (click-dispatcher [:posters/delete (:id poster)])}
-        [icon "trash"]]))
+  [:a {:class (bem module-name "button" ["delete"])
+       :title "smazat"
+       :href "#"
+       :on-click (click-dispatcher [:posters/delete (:id poster)])}
+      [icon "trash"]])
 
 
 (defn thumb-buttons
