@@ -35,7 +35,7 @@
   [:a {:class (bem module-name "button" ["edit"])
        :title "editovat"
        :href "#"
-       :on-click (click-dispatcher [:posters/edit (:id poster)])}
+       :on-click (click-dispatcher [:posters/edit poster])}
       [icon "edit"]])
 
 
@@ -44,7 +44,7 @@
   [:a {:class (bem module-name "button" ["delete"])
        :title "smazat"
        :href "#"
-       :on-click (click-dispatcher [:posters/delete (:id poster)])}
+       :on-click (click-dispatcher [:posters/delete poster])}
       [icon "trash"]])
 
 

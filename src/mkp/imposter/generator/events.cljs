@@ -14,9 +14,9 @@
 (reg-event-fx
   :generator/prepare
   [trim-v]
-  (fn [{:keys [db]} [poster-id]]
-    (if poster-id
-      {:dispatch [:net/json-xhr :get (poster-resource db poster-id)
+  (fn [{:keys [db]} [poster]]
+    (if poster
+      {:dispatch [:net/json-xhr :get (poster-resource db (:id poster))
                   :success-fx edit-poster-fx]}
       {:dispatch [:modals/set :select-spec]})))
 

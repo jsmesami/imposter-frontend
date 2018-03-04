@@ -1,5 +1,6 @@
 (ns mkp.imposter.posters.events
   (:require
+    [reagent.format :refer [format]]
     [re-frame.core :refer [reg-event-fx trim-v]]
     [mkp.imposter.alert.core :refer [status->kind]]
     [mkp.imposter.posters.db :refer [PosterFilterInitial]]
@@ -54,11 +55,12 @@
 (reg-event-fx
   :posters/delete
   [trim-v]
-  (fn [{:keys [db]} [poster-id]]
-    (when (js/confirm "Nevratná operace. Opravdu chcete smazat plakát?")
-      {:dispatch [:net/json-xhr :delete (poster-resource db poster-id)
+  (fn [{:keys [db]} [poster]]
+    (when (js/confirm (format "Nevratná operace.\nOpravdu chcete smazat plakát \"%s\"?" (:title poster)))
+      {:dispatch [:net/json-xhr :delete (poster-resource db (:id poster))
                   :success-fx poster-delete-success
                   :failure-fx poster-delete-failure]})))
+
 
 (reg-event-fx
   :posters/preview
@@ -70,8 +72,14 @@
 (reg-event-fx
   :posters/edit
   [trim-v]
-  (fn [_ [poster-id]]
-    {:dispatch [:generator/prepare poster-id]}))
+  (fn [_ [poster]]
+    (let [fx {:dispatch [:generator/prepare poster]}
+          poster-age-ms (- (js/Date.) (js/Date. (:modified poster)))
+          three-days-ms (* 3 24 60 60 1000)]
+      (if (> poster-age-ms three-days-ms)
+        (when (js/confirm "Plakát je starší než 3 dny.\nOpravdu ho chcete editovat?")
+          fx)
+        fx))))
 
 
 (reg-event-fx

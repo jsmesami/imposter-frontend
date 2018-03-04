@@ -11,7 +11,7 @@
 
 (defn spec-card
   [spec]
-  [:div.col-6.col-sm-4.col-md-3.mb-4
+  [:div
    [:a.card {:href "#"
              :on-click (click-dispatcher [:generator/create spec])}
     [:div.card-header
@@ -27,9 +27,9 @@
   (let [spec-list @(subscribe [:resources/spec])]
     [generic-modal
      [:div {:class module-name}
-       [:div.row.text-center
-        [:h2.col-sm-12 "Vyberte šablonu"]]
-       [:div.row {:class (bem/be module-name "spec-list")}
-        (for [spec (sort-by :id spec-list)]
-          ^{:key (:id spec)}
-          [spec-card spec])]]]))
+      [:div.row.text-center
+       [:h2.col-sm-12 "Vyberte šablonu"]]
+      [:div.row {:class (bem/be module-name "spec-list")}
+       (for [spec (sort-by :id spec-list)]
+         ^{:key (:id spec)}
+         [spec-card spec])]]]))
