@@ -39,7 +39,7 @@
 
 (defn poster-delete-success
   [_]
-  {:dispatch-n [[:alert/add-message "Plakát byl úspěšně smazán." :success 8000]
+  {:dispatch-n [[:alert/add-message "Leták byl úspěšně smazán." :success 8000]
                 [:posters/reload]]})
 
 
@@ -48,7 +48,7 @@
   (let [failure-kind (-> response :status status->kind)]
     (if (= :server-error failure-kind)
       {:dispatch [:alert/add-message "Spojení se nezdařilo." failure-kind]}
-      {:dispatch-n [[:alert/add-message "Plakát se nepodařilo smazat." failure-kind]
+      {:dispatch-n [[:alert/add-message "Leták se nepodařilo smazat." failure-kind]
                     [:posters/reload]]})))
 
 
@@ -56,7 +56,7 @@
   :posters/delete
   [trim-v]
   (fn [{:keys [db]} [poster]]
-    (when (js/confirm (format "Nevratná operace.\nOpravdu chcete smazat plakát \"%s\"?" (:title poster)))
+    (when (js/confirm (format "Nevratná operace.\nOpravdu chcete smazat leták \"%s\"?" (:title poster)))
       {:dispatch [:net/json-xhr :delete (poster-resource db (:id poster))
                   :success-fx poster-delete-success
                   :failure-fx poster-delete-failure]})))
@@ -77,7 +77,7 @@
           poster-age-ms (- (js/Date.) (js/Date. (:modified poster)))
           three-days-ms (* 3 24 60 60 1000)]
       (if (> poster-age-ms three-days-ms)
-        (when (js/confirm "Plakát je starší než 3 dny.\nOpravdu ho chcete editovat?")
+        (when (js/confirm "Leták je starší než 3 dny.\nOpravdu ho chcete editovat?")
           fx)
         fx))))
 
