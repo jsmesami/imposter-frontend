@@ -35,14 +35,14 @@
 
 
 (defn download-button
-  [enabled? link]
+  [enabled? link text]
   [:a.btn.btn-primary.mr-3.mb-3
    {:class (when-not (and enabled? link) "disabled")
     :href (or link "#")
     :target "_blank"
     :rel "noopener noreferrer"
     :download (when link (get-filename link))}
-   "stáhnout" [icon "download"]])
+   text [icon "download"]])
 
 
 (defn help-messages
@@ -66,5 +66,7 @@
       [help-messages filled? changed?]
       [home-button (not loading?)]
       [generate-button (and changed? filled?) loading? form]
-      [preview-button ready? (:thumb form)]
-      [download-button ready? (:print_pdf form)]]]))
+      [preview-button ready? (:thumb form)]]
+     [:div.col-md-8.mb-3
+      [download-button ready? (:print_pdf form) "stáhnout PDF"]
+      [download-button ready? (:print_jpg form) "stáhnout JPG"]]]))

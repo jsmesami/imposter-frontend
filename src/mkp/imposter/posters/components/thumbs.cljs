@@ -19,15 +19,28 @@
       [icon "media"]])
 
 
-(defn thumb-download-button
-  [poster]
-  [:a {:class (bem module-name "button" ["download"])
-       :title "stáhnout"
-       :href (:print_pdf poster)
-       :target "_blank"
-       :rel "noopener noreferrer"
-       :download (-> poster :print_pdf get-filename)}
-      [icon "download"]])
+(defn thumb-download-pdf-button
+  [{url :print_pdf}]
+  (when url
+    [:a {:class (bem module-name "button" ["download"])
+         :title "stáhnout PDF"
+         :href url
+         :target "_blank"
+         :rel "noopener noreferrer"
+         :download (get-filename url)}
+        [icon "download"]]))
+
+
+(defn thumb-download-jpg-button
+  [{url :print_jpg}]
+  (when url
+    [:a {:class (bem module-name "button" ["download"])
+         :title "stáhnout JPG"
+         :href url
+         :target "_blank"
+         :rel "noopener noreferrer"
+         :download (get-filename url)}
+        [icon "download"]]))
 
 
 (defn thumb-edit-button
@@ -51,8 +64,11 @@
 (defn thumb-buttons
   [poster]
   [:div {:class (bem/be module-name "buttons")}
-   (for [[i fun] (map-indexed vector [thumb-preview-button thumb-download-button
-                                      thumb-edit-button thumb-delete-button])]
+   (for [[i fun] (map-indexed vector [thumb-preview-button
+                                      thumb-download-pdf-button
+                                      thumb-download-jpg-button
+                                      thumb-edit-button
+                                      thumb-delete-button])]
      ^{:key i}
      [fun poster])])
 
