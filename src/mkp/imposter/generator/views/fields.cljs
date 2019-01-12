@@ -58,12 +58,18 @@
         [:img.img-thumbnail {:src uri}]])]))
 
 
+(defn- full-address
+  [{:keys [address name]}]
+  (if (empty? address)
+    name
+    (str name ", " address)))
+
+
 (defn bureau-special-field
   "Special field (not present in form fields). Adds bureau ID to the form
   and also populates read-only but mandatory 'bureau address' form field."
   [loading? form]
   (let [bureau-resource @(subscribe [:resources/bureau])
-        full-address #(str "Pobočka " (:name %) ", " (:address %))
         bureau-id->address (->> bureau-resource
                                 (map #(vector (:id %) (full-address %)))
                                 (into (hash-map)))]

@@ -1,7 +1,8 @@
 (ns mkp.imposter.resources.core
   (:require
     [mkp.imposter.resources.events]
-    [mkp.imposter.resources.subs]))
+    [mkp.imposter.resources.subs]
+    [mkp.imposter.utils.string :refer [locale-compare]]))
 
 
 (defn poster-resource
@@ -14,6 +15,6 @@
   "Convert list of resource items into select input options"
   [resource]
   (->> resource
-       (sort-by :id)
+       (sort-by :name locale-compare)
        (map #(vector (:name %) (:id %)))
        (cons ["-" ""])))

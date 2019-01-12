@@ -19,3 +19,9 @@
   "Inserts non-breakable space after one-letter prepositions."
   [s]
   (str/replace s #"([ \u00a0]+)([kosuvzia]) " "$1$2\u00a0"))
+
+
+(def locale-compare
+  (if (.hasOwnProperty (.-prototype js/String) "localeCompare")
+    #(.localeCompare %1 %2)
+    compare))
