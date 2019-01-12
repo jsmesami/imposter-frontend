@@ -67,4 +67,4 @@
       [home-button (not loading?)]
       [generate-button (and changed? filled?) loading? form]
       [preview-button ready? (:thumb form)]
-      [download-button ready? (:print form)]]]))
+      [download-button ready? (:print_pdf form)]]]))

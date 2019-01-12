@@ -23,10 +23,10 @@
   [poster]
   [:a {:class (bem module-name "button" ["download"])
        :title "stáhnout"
-       :href (:print poster)
+       :href (:print_pdf poster)
        :target "_blank"
        :rel "noopener noreferrer"
-       :download (-> poster :print get-filename)}
+       :download (-> poster :print_pdf get-filename)}
       [icon "download"]])
 
 
