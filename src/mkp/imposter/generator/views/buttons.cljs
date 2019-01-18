@@ -26,7 +26,7 @@
 
 
 (defn preview-button
-  [enabled? link]
+  [enabled? {link :thumb}]
   [button "náhled"
    :classes ["mr-3" "mb-3"]
    :icon-name "media"
@@ -34,15 +34,26 @@
    :on-click #(dispatch [:generator/preview link])])
 
 
-(defn download-button
-  [enabled? link text]
+(defn download-button-pdf
+  [enabled? {url :print_pdf}]
   [:a.btn.btn-primary.mr-3.mb-3
-   {:class (when-not (and enabled? link) "disabled")
-    :href (or link "#")
+   {:class (when-not (and enabled? url) "disabled")
+    :href (or url "#")
     :target "_blank"
     :rel "noopener noreferrer"
-    :download (when link (get-filename link))}
-   text [icon "download"]])
+    :download (when url (get-filename url))}
+   "Stáhnout PDF" [icon "download-pdf"]])
+
+
+(defn download-button-jpg
+  [enabled? {url :print_jpg}]
+  [:a.btn.btn-primary.mr-3.mb-3
+   {:class (when-not (and enabled? url) "disabled")
+    :href (or url "#")
+    :target "_blank"
+    :rel "noopener noreferrer"
+    :download (when url (get-filename url))}
+   "Stáhnout JPG" [icon "download-jpg"]])
 
 
 (defn help-messages
@@ -66,7 +77,7 @@
       [help-messages filled? changed?]
       [home-button (not loading?)]
       [generate-button (and changed? filled?) loading? form]
-      [preview-button ready? (:thumb form)]]
+      [preview-button ready? form]]
      [:div.col-md-8.mb-3
-      [download-button ready? (:print_pdf form) "stáhnout PDF"]
-      [download-button ready? (:print_jpg form) "stáhnout JPG"]]]))
+      [download-button-pdf ready? form]
+      [download-button-jpg ready? form]]]))

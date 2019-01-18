@@ -28,7 +28,7 @@
          :target "_blank"
          :rel "noopener noreferrer"
          :download (get-filename url)}
-        [icon "download"]]))
+        [icon "download-pdf"]]))
 
 
 (defn thumb-download-jpg-button
@@ -40,7 +40,7 @@
          :target "_blank"
          :rel "noopener noreferrer"
          :download (get-filename url)}
-        [icon "download"]]))
+        [icon "download-jpg"]]))
 
 
 (defn thumb-edit-button
