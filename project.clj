@@ -1,4 +1,4 @@
-(defproject imposter-frontend "1.0.10"
+(defproject imposter-frontend "1.0.11"
   :description "Imposter is a poster generation tool for Municipal Library of Prague"
 
   :url "https://github.com/jsmesami/imposter-frontend"
@@ -9,14 +9,14 @@
   :min-lein-version "2.8.1"
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.10.126"]
+                 [org.clojure/clojurescript "1.10.520"]
                  [org.clojure/core.async  "0.4.474"]
-                 [cljs-ajax "0.7.3"]
+                 [cljs-ajax "0.8.0"]
                  [com.cemerick/url "0.1.1"]
-                 [reagent "0.7.0"]
-                 [reagent-utils "0.3.0"]
-                 [re-frame "0.10.5"]
-                 [day8.re-frame/http-fx "0.1.5"]]
+                 [reagent "0.8.1"]
+                 [reagent-utils "0.3.2"]
+                 [re-frame "0.10.6"]
+                 [day8.re-frame/http-fx "0.1.6"]]
 
   :plugins [[lein-cljsbuild "1.1.7" :exclusions [[org.clojure/clojure]]]
             [lein-doo "0.1.8"]

@@ -10,20 +10,21 @@
 
 
 (defn reload-link
-  []
+  [text]
   [:span " "
    [:a.alert-link
     {:href "#"
      :on-click reload!}
-    "Znovu načíst"]])
+    text]])
 
 
 (defn- alert
-  [id text kind severity]
+  [id text kind severity children]
   [:div {:class (bem/bm module-name [severity])}
    text
+   children
    (when (= kind :server-error)
-     [reload-link])
+     [reload-link "Znovu načíst"])
    [:button.close
     {:on-click #(dispatch [:alert/remove-message id])}
     "\u00D7"]])
@@ -33,6 +34,6 @@
   []
   (when-let [messages @(subscribe [:alert/messages])]
     [:div.alerts
-     (for [[id {:keys [text kind]}] (seq messages)]
+     (for [[id {:keys [text kind children]}] (seq messages)]
        ^{:key id}
-       [alert id text kind (kind->severity kind)])]))
+       [alert id text kind (kind->severity kind) children])]))

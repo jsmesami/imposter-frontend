@@ -1,0 +1,24 @@
+CACHE MANIFEST
+
+# version 1.0.11
+
+CACHE:
+index.html
+/css/imposter.css?v=1.0.11
+/js/imposter.js?v=1.0.11
+
+/android-chrome-192x192.png
+/android-chrome-512x512.png
+/apple-touch-icon.png
+/browserconfig.xml
+/favicon.ico
+/favicon-16x16.png
+/favicon-32x32.png
+/mstile-150x150.png
+/safari-pinned-tab.svg
+/site.webmanifest
+
+FALLBACK:
+
+NETWORK:
+*

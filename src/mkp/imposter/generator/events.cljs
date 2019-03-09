@@ -69,7 +69,7 @@
 
 (defn submit-poster-fx
   [_ poster]
-  {:dispatch-n [[:alert/add-message "Leták byl uložen." :success 8000]
+  {:dispatch-n [[:alert/add-message "Leták byl uložen." :success :timeout 8000]
                 [:generator/edit poster]]})
 
 

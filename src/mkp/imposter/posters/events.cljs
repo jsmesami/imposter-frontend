@@ -39,7 +39,7 @@
 
 (defn poster-delete-success
   [_]
-  {:dispatch-n [[:alert/add-message "Leták byl úspěšně smazán." :success 8000]
+  {:dispatch-n [[:alert/add-message "Leták byl úspěšně smazán." :success :timeout 8000]
                 [:posters/reload]]})
 
 
